@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0jbcypm7ekoo"]
+
+[ext_resource type="Script" path="res://trackfps.gd" id="1_2801w"]
+
+[node name="PlayerInterface" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_bottom = 26.0
+grow_horizontal = 0
+text = "FPS
+"
+script = ExtResource("1_2801w")
