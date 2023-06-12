@@ -1,13 +1,13 @@
 # HorrorMaze
 
-How to profit
+How to open godot project
 
 1. Download zip file
 2. Import project
 3. Profit EZ
 
 
-MORE PROFIT?
+even better -
 
 1. Type git clone "this repository link"
 2. Type git pull to update your code to live updates on this repo
