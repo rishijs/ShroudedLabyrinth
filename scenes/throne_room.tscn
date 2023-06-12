@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://be0bsyw8hje4c"]
 
-[ext_resource type="Texture2D" uid="uid://b7moufis1glsw" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="1_tga88"]
-[ext_resource type="Texture2D" uid="uid://b365k1m2tqhre" path="res://addons/kenney_prototype_textures/orange/texture_03.png" id="2_6ry1k"]
-[ext_resource type="Texture2D" uid="uid://ccjelptxmp5j5" path="res://addons/kenney_prototype_textures/light/texture_07.png" id="3_23t6i"]
-[ext_resource type="Texture2D" uid="uid://xrku4x4ek5gc" path="res://addons/kenney_prototype_textures/dark/texture_09.png" id="4_5ifqa"]
-[ext_resource type="Texture2D" uid="uid://d4maqwxlxaewc" path="res://light_textures/AdobeStock_298931632.jpeg" id="4_qjun3"]
-[ext_resource type="Script" path="res://Player.gd" id="5_d8dl7"]
+[ext_resource type="Texture2D" uid="uid://b7moufis1glsw" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="1_hbp86"]
+[ext_resource type="Texture2D" uid="uid://b365k1m2tqhre" path="res://addons/kenney_prototype_textures/orange/texture_03.png" id="2_c52ob"]
+[ext_resource type="Texture2D" uid="uid://ccjelptxmp5j5" path="res://addons/kenney_prototype_textures/light/texture_07.png" id="3_olpmh"]
+[ext_resource type="Texture2D" uid="uid://xrku4x4ek5gc" path="res://addons/kenney_prototype_textures/dark/texture_09.png" id="4_jvl5s"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="5_1av5k"]
+[ext_resource type="Texture2D" uid="uid://d4maqwxlxaewc" path="res://light_textures/AdobeStock_298931632.jpeg" id="6_g8xux"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_afng7"]
-texture = ExtResource("1_tga88")
+texture = ExtResource("1_hbp86")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 
@@ -17,11 +17,11 @@ tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_afng7")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aairc"]
-texture = ExtResource("3_23t6i")
+texture = ExtResource("3_olpmh")
 16:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d5yjd"]
-texture = ExtResource("4_5ifqa")
+texture = ExtResource("4_jvl5s")
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_q8g5q"]
@@ -41,7 +41,7 @@ layer_0/tile_data = PackedInt32Array(-262151, 0, 0, -196615, 0, 0, -131079, 0, 0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-280, 128)
 scale = Vector2(0.257813, 0.257813)
-texture = ExtResource("2_6ry1k")
+texture = ExtResource("2_c52ob")
 
 [node name="Extra" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_q8g5q")
@@ -51,7 +51,7 @@ layer_0/tile_data = PackedInt32Array(-2097188, 1048576, 0, -2031652, 1048576, 0,
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(-8, 8)
 scale = Vector2(0.257813, 0.257813)
-script = ExtResource("5_d8dl7")
+script = ExtResource("5_1av5k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_fb6m8")
@@ -59,7 +59,7 @@ shape = SubResource("RectangleShape2D_fb6m8")
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 position = Vector2(8, -8)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_tga88")
+texture = ExtResource("1_hbp86")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(31.0303, -8)
@@ -70,7 +70,7 @@ show_behind_parent = true
 position = Vector2(8, -8)
 scale = Vector2(0.1, 0.1)
 energy = 0.2
-texture = ExtResource("4_qjun3")
+texture = ExtResource("6_g8xux")
 texture_scale = 10.0
 
 [node name="DarkenScene" type="DirectionalLight2D" parent="."]

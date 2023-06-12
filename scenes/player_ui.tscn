@@ -1,0 +1,134 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpvys4fro8suw"]
+
+[ext_resource type="StyleBox" uid="uid://bmp4u8mtvewb4" path="res://themes/progress_bar_style_bg.tres" id="1_espit"]
+[ext_resource type="StyleBox" uid="uid://c16hfluwi2w3y" path="res://themes/progress_bar_style_fill.tres" id="2_bdsne"]
+
+[sub_resource type="SystemFont" id="SystemFont_ogh54"]
+
+[sub_resource type="Theme" id="Theme_vkfhl"]
+default_font = SubResource("SystemFont_ogh54")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx8kc"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.470588, 0.0117647, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtgrr"]
+bg_color = Color(0.482353, 0, 0.631373, 1)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.388235, 0, 1, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwgni"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0, 0.756863, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1r2qc"]
+bg_color = Color(0.4, 0.756863, 1, 1)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.0117647, 0.741176, 1, 1)
+border_blend = true
+
+[node name="Interface" type="CanvasLayer"]
+
+[node name="Health" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -568.0
+offset_top = 300.0
+offset_right = -528.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(9, 0.5)
+color = Color(0, 0, 0, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="Health"]
+offset_left = -1.11111
+offset_right = 38.8889
+offset_bottom = 50.0
+scale = Vector2(1.09333, 1)
+theme = SubResource("Theme_vkfhl")
+theme_override_styles/background = ExtResource("1_espit")
+theme_override_styles/fill = ExtResource("2_bdsne")
+value = 80.0
+show_percentage = false
+
+[node name="Insanity" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = 300.0
+offset_right = -144.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(9.2, 0.620002)
+color = Color(0, 0, 0, 1)
+
+[node name="ProgressBar2" type="ProgressBar" parent="Insanity"]
+offset_right = 4.0
+offset_bottom = 27.0
+scale = Vector2(10.0043, 1.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_vx8kc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xtgrr")
+value = 80.0
+show_percentage = false
+
+[node name="Battery" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 184.0
+offset_top = 300.0
+offset_right = 224.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(9.92963, 0.611277)
+color = Color(0, 0, 0, 1)
+
+[node name="ProgressBar2" type="ProgressBar" parent="Battery"]
+offset_right = 4.0
+offset_bottom = 27.0
+scale = Vector2(9.89526, 1.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_dwgni")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1r2qc")
+value = 80.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 624.0
+offset_right = 60.0
+offset_bottom = 650.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Health
+"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 392.0
+offset_top = 624.0
+offset_right = 454.0
+offset_bottom = 650.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Insanity
+"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 760.0
+offset_top = 624.0
+offset_right = 818.0
+offset_bottom = 650.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Battery
+"

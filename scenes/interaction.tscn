@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0jbcypm7ekoo"]
+
+[sub_resource type="SystemFont" id="SystemFont_7vt55"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_20ufy"]
+font = SubResource("SystemFont_7vt55")
+font_color = Color(1, 0, 0.0156863, 1)
+
+[sub_resource type="GDScript" id="GDScript_86rv3"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Interact" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 27.5
+offset_top = -89.0
+offset_right = 67.5
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+color = Color(0, 0, 0, 1)
+
+[node name="text" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -92.0
+offset_right = 45.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+text = "Interact"
+label_settings = SubResource("LabelSettings_20ufy")
+script = SubResource("GDScript_86rv3")
+
+[node name="text2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 32.5
+offset_top = -92.0
+offset_right = 117.5
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+text = "E
+"
+label_settings = SubResource("LabelSettings_20ufy")
+script = SubResource("GDScript_86rv3")
+metadata/_edit_use_anchors_ = true
