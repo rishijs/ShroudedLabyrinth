@@ -4,6 +4,8 @@ var lanterns = [];
 var mode = 0; 
 var time = 0;
 
+@export var frequency_flicker = 0.1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for x in self.get_children():
@@ -13,7 +15,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
-	if time > 0.1:
+	if time > frequency_flicker:
 		match mode:
 			0:
 				for x in lanterns:
@@ -44,4 +46,15 @@ func _process(delta):
 						x.texture_scale = 1
 				mode = 0
 		time = 0
+				
 	
+
+
+func _on_area_2d_body_entered(body):
+	if get_tree().get_nodes_in_group("Player").size() > 0:
+		get_tree().get_nodes_in_group("Player")[0].in_light = true
+
+
+func _on_area_2d_body_exited(body):
+	if get_tree().get_nodes_in_group("Player").size() > 0:
+		get_tree().get_nodes_in_group("Player")[0].in_light = false

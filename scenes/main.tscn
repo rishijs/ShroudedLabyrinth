@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bnkdk68rp3lku"]
+[gd_scene load_steps=49 format=3 uid="uid://bnkdk68rp3lku"]
 
 [ext_resource type="Texture2D" uid="uid://bs10dx5iji1ul" path="res://addons/kenney_prototype_textures/green/texture_07.png" id="1_15tek"]
 [ext_resource type="Texture2D" uid="uid://ccjelptxmp5j5" path="res://addons/kenney_prototype_textures/light/texture_07.png" id="1_k4st8"]
@@ -129,6 +129,9 @@ sources/11 = SubResource("TileSetAtlasSource_aa4ea")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b14ll"]
 size = Vector2(1008.69, 1000)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hrk7"]
+size = Vector2(190.512, 191.067)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bar5l"]
 size = Vector2(16, 16)
 
@@ -240,6 +243,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern2" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-608, -224)
 scale = Vector2(0.03125, 0.03125)
@@ -260,6 +271,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern2/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern2/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern3" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-296, -408)
@@ -282,6 +301,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern3/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern4" type="Sprite2D" parent="Lanterns"]
 position = Vector2(48, -744)
 scale = Vector2(0.03125, 0.03125)
@@ -303,6 +330,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern4/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern5" type="Sprite2D" parent="Lanterns"]
 position = Vector2(808, -608)
 scale = Vector2(0.03125, 0.03125)
@@ -322,6 +357,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern5/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern5/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern6" type="Sprite2D" parent="Lanterns"]
 position = Vector2(312, -80)
@@ -343,6 +386,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern6/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern7" type="Sprite2D" parent="Lanterns"]
 position = Vector2(376, 520)
 scale = Vector2(0.03125, 0.03125)
@@ -362,6 +413,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern7/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern7"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern7/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern8" type="Sprite2D" parent="Lanterns"]
 position = Vector2(952, 176)
@@ -383,6 +442,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern8/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern9" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-96, 1104)
 scale = Vector2(0.03125, 0.03125)
@@ -402,6 +469,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern9/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern9/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern10" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-32, 1504)
@@ -423,6 +498,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern10"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern10/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern11" type="Sprite2D" parent="Lanterns"]
 position = Vector2(576, 1264)
 scale = Vector2(0.03125, 0.03125)
@@ -442,6 +525,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern11/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern11"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern11/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern12" type="Sprite2D" parent="Lanterns"]
 position = Vector2(720, 1704)
@@ -463,6 +554,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern12"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern12/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern13" type="Sprite2D" parent="Lanterns"]
 position = Vector2(1104, 1520)
 scale = Vector2(0.03125, 0.03125)
@@ -482,6 +581,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern13/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern13"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern13/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern14" type="Sprite2D" parent="Lanterns"]
 position = Vector2(1232, 1888)
@@ -503,6 +610,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern14"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern14/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern15" type="Sprite2D" parent="Lanterns"]
 position = Vector2(2184, 1664)
 scale = Vector2(0.03125, 0.03125)
@@ -522,6 +637,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern15/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern15"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern15/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern16" type="Sprite2D" parent="Lanterns"]
 position = Vector2(2528, 1472)
@@ -543,6 +666,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern16"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern16/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern17" type="Sprite2D" parent="Lanterns"]
 position = Vector2(3136, 2032)
 scale = Vector2(0.03125, 0.03125)
@@ -562,6 +693,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern17/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern17"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern17/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern18" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-384, 2080)
@@ -583,6 +722,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern18"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern18/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern19" type="Sprite2D" parent="Lanterns"]
 position = Vector2(445, 2200)
 scale = Vector2(0.03125, 0.03125)
@@ -602,6 +749,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern19/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern19"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern19/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern20" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-160, 2536)
@@ -623,6 +778,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern20"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern20/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern21" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-1688, 2360)
 scale = Vector2(0.03125, 0.03125)
@@ -642,6 +805,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern21/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern21"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern21/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern22" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-1808, 1928)
@@ -663,6 +834,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern22"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern22/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern23" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-1504, 2880)
 scale = Vector2(0.03125, 0.03125)
@@ -682,6 +861,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern23/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern23"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern23/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern24" type="Sprite2D" parent="Lanterns"]
 position = Vector2(48, 3072)
@@ -703,6 +890,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern24"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern24/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern25" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-152, 3584)
 scale = Vector2(0.03125, 0.03125)
@@ -722,6 +917,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern25/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern25"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern25/Area2D"]
+position = Vector2(256.001, 512)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern26" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-1760, 4632)
@@ -744,6 +947,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern26"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern26/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern28" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-336, 4304)
 scale = Vector2(0.03125, 0.03125)
@@ -764,6 +975,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern28/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern28"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern28/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern29" type="Sprite2D" parent="Lanterns"]
 position = Vector2(376, 4304)
@@ -786,6 +1005,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern29"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern29/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern30" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-1080, 4992)
 scale = Vector2(0.03125, 0.03125)
@@ -806,6 +1033,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern30/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern30"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern30/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern31" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-1192, 5656)
@@ -828,6 +1063,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern31"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern31/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern32" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-616, 5656)
 scale = Vector2(0.03125, 0.03125)
@@ -848,6 +1091,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern32/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern32"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern32/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern34" type="Sprite2D" parent="Lanterns"]
 position = Vector2(920, 4896)
@@ -870,6 +1121,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern34"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern34/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern35" type="Sprite2D" parent="Lanterns"]
 position = Vector2(1386, 5808)
 scale = Vector2(0.03125, 0.03125)
@@ -890,6 +1149,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern35/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern35"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern35/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern37" type="Sprite2D" parent="Lanterns"]
 position = Vector2(2496, 5448)
@@ -912,6 +1179,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern37"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern37/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern43" type="Sprite2D" parent="Lanterns"]
 position = Vector2(40, 4728)
 scale = Vector2(0.03125, 0.03125)
@@ -933,6 +1208,72 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern43"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern43/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
+[node name="Lantern44" type="Sprite2D" parent="Lanterns"]
+position = Vector2(1544, 4512)
+scale = Vector2(0.03125, 0.03125)
+texture = ExtResource("6_vmwan")
+
+[node name="PointLight2D" type="PointLight2D" parent="Lanterns/Lantern44"]
+position = Vector2(0.000488281, -0.000549316)
+scale = Vector2(1.6, 1.6)
+color = Color(1, 0.0509804, 0, 1)
+energy = 3.31
+texture = ExtResource("12_wu3iw")
+texture_scale = 2.0
+metadata/light_type = "outside"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Lanterns/Lantern44"]
+position = Vector2(-504.345, -461.621)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern44/StaticBody2D"]
+position = Vector2(504.345, 461.625)
+shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern44"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern44/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
+[node name="Lantern50" type="Sprite2D" parent="Lanterns"]
+position = Vector2(1816, 5200)
+scale = Vector2(0.03125, 0.03125)
+texture = ExtResource("6_vmwan")
+
+[node name="PointLight2D" type="PointLight2D" parent="Lanterns/Lantern50"]
+position = Vector2(0.000488281, -0.000549316)
+scale = Vector2(1.6, 1.6)
+color = Color(1, 0.0509804, 0, 1)
+energy = 3.31
+texture = ExtResource("12_wu3iw")
+texture_scale = 2.0
+metadata/light_type = "outside"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Lanterns/Lantern50"]
+position = Vector2(-504.345, -461.621)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern50/StaticBody2D"]
+position = Vector2(504.345, 461.625)
+shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern50"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern50/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern45" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-208, 6896)
 scale = Vector2(0.03125, 0.03125)
@@ -952,6 +1293,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern45/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern45"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern45/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern46" type="Sprite2D" parent="Lanterns"]
 position = Vector2(-144, 6440)
@@ -973,6 +1322,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern46"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern46/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern47" type="Sprite2D" parent="Lanterns"]
 position = Vector2(448, 6424)
 scale = Vector2(0.03125, 0.03125)
@@ -992,6 +1349,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern47/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern47"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern47/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Lantern48" type="Sprite2D" parent="Lanterns"]
 position = Vector2(464, 6928)
@@ -1013,6 +1378,14 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern48"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern48/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
+
 [node name="Lantern49" type="Sprite2D" parent="Lanterns"]
 position = Vector2(112, 7096)
 scale = Vector2(0.03125, 0.03125)
@@ -1032,6 +1405,14 @@ position = Vector2(-504.345, -461.621)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern49/StaticBody2D"]
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
+
+[node name="Area2D" type="Area2D" parent="Lanterns/Lantern49"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanterns/Lantern49/Area2D"]
+position = Vector2(0, 0.00195313)
+rotation = -3.14159
+scale = Vector2(21.5, -21.4375)
+shape = SubResource("RectangleShape2D_8hrk7")
 
 [node name="Remains" type="Node" parent="."]
 
@@ -1408,21 +1789,18 @@ position = Vector2(-132, -528)
 script = ExtResource("23_epq77")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(8, -8)
 scale = Vector2(0.015625, 0.015625)
 texture = ExtResource("7_qdxcd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(8, -8)
 shape = SubResource("RectangleShape2D_bar5l")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(8, -8)
 zoom = Vector2(2, 2)
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 show_behind_parent = true
-position = Vector2(104, -16)
+position = Vector2(95, -6)
 rotation = -3.14159
 scale = Vector2(0.501281, 0.536749)
 energy = 0.69
@@ -1432,17 +1810,104 @@ texture = ExtResource("11_m8ju6")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Player"]
 show_behind_parent = true
-position = Vector2(8, -8)
 scale = Vector2(0.1, 0.1)
 energy = 0.05
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.5
 
+[node name="Sprite2D2" type="Sprite2D" parent="Player"]
+
 [node name="Interact" parent="." groups=["InteractionInterface"] instance=ExtResource("25_c2mtu")]
+visible = false
+follow_viewport_enabled = false
 
 [node name="Interface" parent="." groups=["PlayerInterface"] instance=ExtResource("26_q7gcn")]
 script = ExtResource("26_lvcrx")
 
+[connection signal="body_entered" from="Lanterns/Lantern/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern2/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern2/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern3/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern3/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern4/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern4/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern5/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern5/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern6/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern6/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern7/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern7/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern8/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern8/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern9/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern9/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern10/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern10/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern11/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern11/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern12/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern12/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern13/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern13/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern14/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern14/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern15/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern15/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern16/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern16/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern17/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern17/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern18/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern18/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern19/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern19/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern20/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern20/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern21/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern21/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern22/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern22/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern23/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern23/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern24/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern24/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern25/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern25/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern26/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern26/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern28/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern28/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern29/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern29/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern30/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern30/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern31/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern31/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern32/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern32/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern34/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern34/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern35/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern35/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern37/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern37/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern43/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern43/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern44/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern44/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern50/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern50/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern45/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern45/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern46/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern46/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern47/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern47/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern48/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern48/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Lanterns/Lantern49/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Lanterns/Lantern49/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Shrines/ShrineMain1/Area2D" to="Shrines/ShrineMain1/Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Shrines/ShrineMain1/Area2D" to="Shrines/ShrineMain1/Area2D" method="_on_body_exited"]
 [connection signal="body_entered" from="Shrines/ShrineMain2/Area2D" to="Shrines/ShrineMain2/Area2D" method="_on_body_entered"]

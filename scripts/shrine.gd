@@ -5,6 +5,7 @@ var time = 0
 var direction
 
 @export var shrine_status:bool
+@export var activation_time = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,7 +15,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time+=delta
-	if time>3 && activated == false:
+	if time>activation_time && activated == false:
 		activated = true
 		direction = get_tree().get_nodes_in_group("Player")[0].direction
 	
@@ -52,10 +53,12 @@ func _process(delta):
 func _on_body_entered(body):
 	if activated:
 		get_tree().get_nodes_in_group("InteractionInterface")[0].visible = true	
+		get_tree().get_nodes_in_group("Player")[0].in_light = true
 		shrine_status = true
 
 
 func _on_body_exited(body):
 	if activated && get_tree().get_nodes_in_group("InteractionInterface").size() > 0:
 		get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
+		get_tree().get_nodes_in_group("Player")[0].in_light = false
 		shrine_status = false

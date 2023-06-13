@@ -1,134 +1,154 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpvys4fro8suw"]
+[gd_scene load_steps=11 format=3 uid="uid://cpvys4fro8suw"]
 
+[ext_resource type="Script" path="res://scripts/Flashlight_Info.gd" id="1_5mqdh"]
 [ext_resource type="StyleBox" uid="uid://bmp4u8mtvewb4" path="res://themes/progress_bar_style_bg.tres" id="1_espit"]
+[ext_resource type="Script" path="res://scripts/Battery_ProgressBar.gd" id="2_53nha"]
 [ext_resource type="StyleBox" uid="uid://c16hfluwi2w3y" path="res://themes/progress_bar_style_fill.tres" id="2_bdsne"]
+[ext_resource type="Script" path="res://scripts/Insanity_ProgressBar.gd" id="3_hxcvm"]
+[ext_resource type="Script" path="res://scripts/Health_ProgressBar.gd" id="5_t5ngn"]
 
-[sub_resource type="SystemFont" id="SystemFont_ogh54"]
+[sub_resource type="LabelSettings" id="LabelSettings_usnj3"]
+line_spacing = 0.0
+font_size = 18
 
-[sub_resource type="Theme" id="Theme_vkfhl"]
-default_font = SubResource("SystemFont_ogh54")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx8kc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euluf"]
 bg_color = Color(0, 0, 0, 1)
-border_color = Color(0.470588, 0.0117647, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtgrr"]
-bg_color = Color(0.482353, 0, 0.631373, 1)
-border_width_top = 1
-border_width_bottom = 1
-border_color = Color(0.388235, 0, 1, 1)
+border_width_right = 20
+border_color = Color(0, 0.627451, 1, 1)
 border_blend = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwgni"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo4yi"]
 bg_color = Color(0, 0, 0, 1)
-border_color = Color(0, 0.756863, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1r2qc"]
-bg_color = Color(0.4, 0.756863, 1, 1)
-border_width_top = 1
-border_width_bottom = 1
-border_color = Color(0.0117647, 0.741176, 1, 1)
+border_width_right = 20
+border_color = Color(0.568627, 0, 0.941176, 1)
 border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_fcpb7"]
+font_size = 10
+font_color = Color(0.258824, 0.258824, 0.258824, 1)
 
 [node name="Interface" type="CanvasLayer"]
 
-[node name="Health" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -568.0
-offset_top = 300.0
-offset_right = -528.0
-offset_bottom = 340.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(9, 0.5)
+[node name="FlashlightInfo" type="ColorRect" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -64.0
+offset_right = 42.0
+offset_bottom = -24.0
+grow_vertical = 0
+scale = Vector2(1.6, 1.6)
 color = Color(0, 0, 0, 1)
+script = ExtResource("1_5mqdh")
+
+[node name="Border" type="ColorRect" parent="FlashlightInfo"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.00006
+offset_right = 42.0
+offset_bottom = 42.0001
+scale = Vector2(0.9, 0.9)
+color = Color(0, 0, 0, 1)
+
+[node name="Light_Mode" type="Label" parent="FlashlightInfo"]
+layout_mode = 2
+offset_left = -1.25
+offset_top = 4.99998
+offset_right = 38.75
+offset_bottom = 50.0
+text = "OFF"
+label_settings = SubResource("LabelSettings_usnj3")
+horizontal_alignment = 1
+
+[node name="Battery" type="MarginContainer" parent="." groups=["Battery"]]
+offset_right = 40.0
+offset_bottom = 27.0
+scale = Vector2(0.5, 7)
+script = ExtResource("2_53nha")
+
+[node name="ProgressBar" type="ProgressBar" parent="Battery"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = ExtResource("1_espit")
+theme_override_styles/fill = SubResource("StyleBoxFlat_euluf")
+value = 50.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Insanity" type="MarginContainer" parent="." groups=["Insanity"]]
+offset_top = 192.0
+offset_right = 40.0
+offset_bottom = 219.0
+scale = Vector2(0.5, 7)
+script = ExtResource("3_hxcvm")
+
+[node name="ProgressBar" type="ProgressBar" parent="Insanity"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = ExtResource("1_espit")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xo4yi")
+value = 50.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Health" type="MarginContainer" parent="." groups=["Health"]]
+offset_top = 384.0
+offset_right = 40.0
+offset_bottom = 411.0
+scale = Vector2(0.5, 7)
+script = ExtResource("5_t5ngn")
 
 [node name="ProgressBar" type="ProgressBar" parent="Health"]
-offset_left = -1.11111
-offset_right = 38.8889
-offset_bottom = 50.0
-scale = Vector2(1.09333, 1)
-theme = SubResource("Theme_vkfhl")
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_styles/background = ExtResource("1_espit")
 theme_override_styles/fill = ExtResource("2_bdsne")
-value = 80.0
+value = 50.0
+fill_mode = 3
 show_percentage = false
 
-[node name="Insanity" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = 300.0
-offset_right = -144.0
-offset_bottom = 340.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(9.2, 0.620002)
-color = Color(0, 0, 0, 1)
+[node name="Bat" type="Label" parent="." groups=["BatteryText"]]
+offset_left = -12.0
+offset_top = 71.0
+offset_right = 28.0
+offset_bottom = 274.0
+text = "B
+A
+T
+T
+E
+R
+Y"
+label_settings = SubResource("LabelSettings_fcpb7")
+horizontal_alignment = 1
 
-[node name="ProgressBar2" type="ProgressBar" parent="Insanity"]
-offset_right = 4.0
-offset_bottom = 27.0
-scale = Vector2(10.0043, 1.5)
-theme_override_styles/background = SubResource("StyleBoxFlat_vx8kc")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xtgrr")
-value = 80.0
-show_percentage = false
+[node name="Ins" type="Label" parent="." groups=["InsanityText"]]
+offset_left = -13.0
+offset_top = 247.0
+offset_right = 27.0
+offset_bottom = 450.0
+text = "I
+N
+S
+A
+N
+I
+T
+Y"
+label_settings = SubResource("LabelSettings_fcpb7")
+horizontal_alignment = 1
 
-[node name="Battery" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 184.0
-offset_top = 300.0
-offset_right = 224.0
-offset_bottom = 340.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(9.92963, 0.611277)
-color = Color(0, 0, 0, 1)
-
-[node name="ProgressBar2" type="ProgressBar" parent="Battery"]
-offset_right = 4.0
-offset_bottom = 27.0
-scale = Vector2(9.89526, 1.5)
-theme_override_styles/background = SubResource("StyleBoxFlat_dwgni")
-theme_override_styles/fill = SubResource("StyleBoxFlat_1r2qc")
-value = 80.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="."]
-offset_left = 8.0
-offset_top = 624.0
-offset_right = 60.0
-offset_bottom = 650.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Health
-"
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 392.0
-offset_top = 624.0
-offset_right = 454.0
-offset_bottom = 650.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Insanity
-"
-
-[node name="Label3" type="Label" parent="."]
-offset_left = 760.0
-offset_top = 624.0
-offset_right = 818.0
-offset_bottom = 650.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Battery
-"
+[node name="Hp" type="Label" parent="." groups=["HealthText"]]
+offset_left = -13.0
+offset_top = 475.0
+offset_right = 27.0
+offset_bottom = 678.0
+text = "H
+E
+A
+L
+T
+H"
+label_settings = SubResource("LabelSettings_fcpb7")
+horizontal_alignment = 1
