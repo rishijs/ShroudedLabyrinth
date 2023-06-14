@@ -3,21 +3,21 @@ extends CharacterBody2D
 @export var SPEED = 200.0
 @export var flashlight_mode = "Off"
 @export var flashlight_switch_delay = 0.5
-@export var max_health = 100
-@export var max_insanity = 100
-@export var max_battery = 100
+@export var max_health = 150
+@export var max_insanity = 150
+@export var max_battery = 150
 @export var lerp_strength = 0.1
 
 @export var health = max_health
 @export var insanity = 0
 @export var battery = max_battery
-@export var battery_recharge_rate = 0.05
+@export var battery_recharge_rate = 0.09
 
 #N * 100 = value per second
-@export var full_power_light_consumption = 0.1
-@export var infrared_light_consumption = 0.06
-@export var scanner_light_consumption = 0.03
-@export var insanity_overtime = 0.25
+@export var full_power_light_consumption = 0.065
+@export var infrared_light_consumption = 0.04
+@export var scanner_light_consumption = 0.01
+@export var insanity_overtime = 0.15
 
 @export var insanity_cure_high = 0.1
 @export var insanity_cure_infrared = 0.225
@@ -25,7 +25,7 @@ extends CharacterBody2D
 @export var insanity_cure_light = 0.2
 
 @export var health_dmg_insane = 0.05
-@export var insanity_threshold = 90
+@export var insanity_threshold = max_insanity*.9
 @export var low_health_threshold = 30
 @export var low_battery_threshold = 20
 
@@ -34,6 +34,7 @@ extends CharacterBody2D
 @export var scanner_dmg = 0
 
 @export var start_time = 5
+@export var dev_mode = true
 
 var in_light = false
 var flashlight_switched = false
@@ -63,6 +64,11 @@ func _process(delta):
 	if get_tree().get_current_scene().get_name() == "main":
 		time += delta
 		
+		if dev_mode:
+			insanity=0
+			health=max_health
+			battery=max_battery
+			
 		if insanity<0:
 			insanity = 0
 		if health<=0:
@@ -81,7 +87,7 @@ func _process(delta):
 		if in_light:
 			insanity -= insanity_cure_light
 			
-		if insanity<100 && flashlight_mode!="HighPower" && in_light == false && time > start_time:
+		if insanity<max_insanity && flashlight_mode!="HighPower" && in_light == false && time > start_time:
 			insanity += insanity_overtime
 			
 		if battery>0:
@@ -91,7 +97,7 @@ func _process(delta):
 					insanity -= insanity_cure_high
 					get_tree().get_first_node_in_group("Flashlight").visible = true
 					get_tree().get_first_node_in_group("Flashlight").set_color("ffffff")
-					get_tree().get_first_node_in_group("Flashlight").energy = 1.1
+					get_tree().get_first_node_in_group("Flashlight").energy = 1.5
 				"Infrared":
 					battery -= infrared_light_consumption
 					insanity -= insanity_cure_infrared
@@ -103,7 +109,7 @@ func _process(delta):
 					insanity -= insanity_cure_scanner
 					get_tree().get_first_node_in_group("Flashlight").visible = true
 					get_tree().get_first_node_in_group("Flashlight").set_color("0080FE")
-					get_tree().get_first_node_in_group("Flashlight").energy = 0.9
+					get_tree().get_first_node_in_group("Flashlight").energy = 2
 				"Off":
 					get_tree().get_first_node_in_group("Flashlight").visible = false
 		else:
