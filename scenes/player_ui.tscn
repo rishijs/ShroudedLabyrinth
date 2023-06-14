@@ -152,3 +152,36 @@ T
 H"
 label_settings = SubResource("LabelSettings_fcpb7")
 horizontal_alignment = 1
+
+[node name="Leaf1" type="ColorRect" parent="." groups=["leaf1text"]]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 50.0
+grow_horizontal = 0
+color = Color(0, 0.435294, 0, 1)
+
+[node name="Leaf2" type="ColorRect" parent="." groups=["leaf2text"]]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 10.0
+offset_right = -60.0
+offset_bottom = 50.0
+grow_horizontal = 0
+color = Color(0, 0.435294, 0, 1)
+
+[node name="Leaf3" type="ColorRect" parent="." groups=["leaf3text"]]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -152.0
+offset_top = 10.0
+offset_right = -112.0
+offset_bottom = 50.0
+grow_horizontal = 0
+color = Color(0, 0.435294, 0, 1)

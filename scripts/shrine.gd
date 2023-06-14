@@ -4,8 +4,7 @@ var activated = false
 var time = 0
 var direction
 
-@export var shrine_status:bool
-@export var activation_time = 3
+var shrine_status = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,7 +14,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time+=delta
-	if time>activation_time && activated == false:
+	if time>get_tree().get_first_node_in_group("Player").start_time && activated == false:
 		activated = true
 		direction = get_tree().get_nodes_in_group("Player")[0].direction
 	
@@ -32,10 +31,6 @@ func _process(delta):
 					get_tree().get_nodes_in_group("BaseM2")[0].visible = true
 					for child in get_node("../").get_children():
 						child.visible = false
-			"shrinesecret":
-				pass	
-			"shrinegatefake":
-				pass
 			"shrinegate1":
 				if direction == "right":
 					get_children()[0].disabled = true

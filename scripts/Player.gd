@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 @export var SPEED = 200.0
-@export var direction = "None"
 @export var flashlight_mode = "Off"
 @export var flashlight_switch_delay = 0.5
 @export var max_health = 100
@@ -27,13 +26,23 @@ extends CharacterBody2D
 @export var low_health_threshold = 30
 @export var low_battery_threshold = 20
 
-@export var in_light = false
+@export var high_dmg = 1
+@export var infrared_dmg = 0.1
+@export var scanner_dmg = 0
 
+@export var start_time = 5
+
+var in_light = false
 var flashlight_switched = false
 var time = 0
+var time_flashlight_switch = 0
+var leaves_collected = 0
 
 var shrines
 var shrine_type = "default"
+var direction = "None"
+
+var secret_ending = false
 
 # ready
 func _ready():
@@ -46,6 +55,8 @@ func _ready():
 	
 # tick
 func _process(delta):
+	
+	time += delta
 	
 	if insanity<0:
 		insanity = 0
@@ -60,7 +71,7 @@ func _process(delta):
 	if in_light:
 		insanity -= 0.15
 		
-	if insanity<100 && flashlight_mode!="HighPower" && in_light == false:
+	if insanity<100 && flashlight_mode!="HighPower" && in_light == false && time > start_time:
 		insanity += 0.25
 		
 	if battery>0:
@@ -68,14 +79,26 @@ func _process(delta):
 			"HighPower":
 				battery -= full_power_light_consumption
 				insanity -= insanity_cure_high
+				get_tree().get_first_node_in_group("Flashlight").visible = true
+				get_tree().get_first_node_in_group("Flashlight").set_color("ffffff")
+				get_tree().get_first_node_in_group("Flashlight").energy = 1.1
 			"Infrared":
 				battery -= infrared_light_consumption
 				insanity -= insanity_cure_infrared
+				get_tree().get_first_node_in_group("Flashlight").visible = true
+				get_tree().get_first_node_in_group("Flashlight").set_color("880808")
+				get_tree().get_first_node_in_group("Flashlight").energy = 7.5
 			"Scanner":
 				battery -= scanner_light_consumption
 				insanity -= insanity_cure_scanner
+				get_tree().get_first_node_in_group("Flashlight").visible = true
+				get_tree().get_first_node_in_group("Flashlight").set_color("0080FE")
+				get_tree().get_first_node_in_group("Flashlight").energy = 0.9
+			"Off":
+				get_tree().get_first_node_in_group("Flashlight").visible = false
 	else:
 		flashlight_mode = "Off"
+		get_tree().get_first_node_in_group("Flashlight").visible = false
 	
 	if(Input.is_action_pressed("emergency_turn_light_off")):
 		flashlight_mode = "Off"
@@ -104,17 +127,18 @@ func _process(delta):
 				get_tree().get_nodes_in_group("DoorMaze")[0].get_children()[0].get_children()[0].disabled = true
 		"shrinesecret":
 			if Input.is_action_pressed("interact"):
+				secret_ending = true
 				get_tree().get_nodes_in_group("DoorDecoy")[0].visible = false	
 				get_tree().get_nodes_in_group("DoorDecoy")[0].get_children()[0].get_children()[0].disabled = true
 		"shrinegatefake":
-			if Input.is_action_pressed("interact"):
-				pass
+			if Input.is_action_pressed("interact") && leaves_collected == 3:
+				get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 		"shrinegate1":
-			if Input.is_action_pressed("interact"):
+			if Input.is_action_pressed("interact") && leaves_collected == 3:
 				get_tree().get_nodes_in_group("DoorGate")[0].visible = false
 				get_tree().get_nodes_in_group("DoorGate")[0].get_children()[0].get_children()[0].disabled = true
 		"shrinegate2":
-			if Input.is_action_pressed("interact"):
+			if Input.is_action_pressed("interact") && leaves_collected == 3:
 				get_tree().get_nodes_in_group("DoorGate")[0].visible = false
 				get_tree().get_nodes_in_group("DoorGate")[0].get_children()[0].get_children()[0].disabled = true
 	
@@ -137,9 +161,9 @@ func _process(delta):
 					flashlight_mode = "Scanner"
 					flashlight_switched = true
 	else:
-		time+=delta;
-		if time>flashlight_switch_delay:
-			time = 0
+		time_flashlight_switch +=delta;
+		if time_flashlight_switch >flashlight_switch_delay:
+			time_flashlight_switch = 0
 			flashlight_switched=false
 	
 # movement
@@ -169,3 +193,19 @@ func _physics_process(delta):
 		
 		
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body):
+	pass
+
+
+func _on_area_2d_body_exited(body):
+	pass
+
+
+func _on_area_2d_area_entered(area):
+	pass 
+
+
+func _on_area_2d_area_exited(area):
+	pass 

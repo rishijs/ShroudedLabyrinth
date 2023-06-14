@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bnkdk68rp3lku"]
+[gd_scene load_steps=51 format=3 uid="uid://bnkdk68rp3lku"]
 
 [ext_resource type="Texture2D" uid="uid://bs10dx5iji1ul" path="res://addons/kenney_prototype_textures/green/texture_07.png" id="1_15tek"]
 [ext_resource type="Texture2D" uid="uid://ccjelptxmp5j5" path="res://addons/kenney_prototype_textures/light/texture_07.png" id="1_k4st8"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://i2kl3k4wt13" path="res://light_textures/0b3aa7ed-ad04-4603-94f8-32f761990b82_800.png" id="22_cand8"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="23_epq77"]
 [ext_resource type="Texture2D" uid="uid://1gml33fmpnkh" path="res://addons/kenney_prototype_textures/red/texture_03.png" id="23_mbu5f"]
+[ext_resource type="Script" path="res://scripts/leaf.gd" id="23_w1s8d"]
 [ext_resource type="PackedScene" uid="uid://c0jbcypm7ekoo" path="res://scenes/interaction.tscn" id="25_c2mtu"]
 [ext_resource type="Script" path="res://scripts/player_interface.gd" id="26_lvcrx"]
 [ext_resource type="PackedScene" uid="uid://cpvys4fro8suw" path="res://scenes/player_ui.tscn" id="26_q7gcn"]
@@ -131,6 +132,9 @@ size = Vector2(1008.69, 1000)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hrk7"]
 size = Vector2(190.512, 191.067)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylixr"]
+size = Vector2(281.303, 298.514)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bar5l"]
 size = Vector2(16, 16)
@@ -1784,8 +1788,53 @@ position = Vector2(-504.345, -461.621)
 position = Vector2(504.345, 461.625)
 shape = SubResource("RectangleShape2D_b14ll")
 
+[node name="Leaves" type="Node" parent="."]
+
+[node name="Leaf1" type="Sprite2D" parent="Leaves"]
+position = Vector2(3228.8, 1340.8)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_v22bw")
+script = ExtResource("23_w1s8d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Leaves/Leaf1"]
+
+[node name="Area2D" type="Area2D" parent="Leaves/Leaf1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leaves/Leaf1/Area2D"]
+scale = Vector2(4.55026, -4.2879)
+shape = SubResource("RectangleShape2D_ylixr")
+
+[node name="Leaf2" type="Sprite2D" parent="Leaves"]
+position = Vector2(1592, 1304)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_v22bw")
+script = ExtResource("23_w1s8d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Leaves/Leaf2"]
+
+[node name="Area2D" type="Area2D" parent="Leaves/Leaf2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leaves/Leaf2/Area2D"]
+scale = Vector2(4.55026, -4.2879)
+shape = SubResource("RectangleShape2D_ylixr")
+
+[node name="Leaf3" type="Sprite2D" parent="Leaves"]
+position = Vector2(312, 3664)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_v22bw")
+script = ExtResource("23_w1s8d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Leaves/Leaf3"]
+
+[node name="Area2D" type="Area2D" parent="Leaves/Leaf3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leaves/Leaf3/Area2D"]
+position = Vector2(-0.0012207, 0.00390625)
+scale = Vector2(4.55026, -4.2879)
+shape = SubResource("RectangleShape2D_ylixr")
+
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
-position = Vector2(-132, -528)
+position = Vector2(-184, -568)
 script = ExtResource("23_epq77")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
@@ -1798,7 +1847,7 @@ shape = SubResource("RectangleShape2D_bar5l")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2, 2)
 
-[node name="PointLight2D" type="PointLight2D" parent="Player"]
+[node name="Flashlight" type="PointLight2D" parent="Player" groups=["Flashlight"]]
 show_behind_parent = true
 position = Vector2(95, -6)
 rotation = -3.14159
@@ -1807,6 +1856,11 @@ energy = 0.69
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.713726)
 texture = ExtResource("11_m8ju6")
+
+[node name="Area2D" type="Area2D" parent="Player/Flashlight" groups=["FlashlightArea"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/Flashlight/Area2D"]
+polygon = PackedVector2Array(173.555, -26.0835, -145.627, -100.605, -145.627, 78.249, 173.555, 3.72559)
 
 [node name="PointLight2D2" type="PointLight2D" parent="Player"]
 show_behind_parent = true
@@ -1925,3 +1979,10 @@ script = ExtResource("26_lvcrx")
 [connection signal="body_entered" from="Teleporters/Teleporter34/Area2D" to="Teleporters/Teleporter34/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Teleporters/Teleporter43/Area2D" to="Teleporters/Teleporter43/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Teleporters/TeleporterMain/Area2D" to="Teleporters/TeleporterMain/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Leaves/Leaf1/Area2D" to="Leaves/Leaf1" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Leaves/Leaf2/Area2D" to="Leaves/Leaf2" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Leaves/Leaf3/Area2D" to="Leaves/Leaf3" method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Player/Flashlight/Area2D" to="Player" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Player/Flashlight/Area2D" to="Player" method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Player/Flashlight/Area2D" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Player/Flashlight/Area2D" to="Player" method="_on_area_2d_body_exited"]

@@ -25,4 +25,7 @@ func _on_body_entered(body):
 			get_tree().get_nodes_in_group("Player")[0].position.x = get_tree().get_nodes_in_group("loc4")[0].position.x
 			get_tree().get_nodes_in_group("Player")[0].position.y = get_tree().get_nodes_in_group("loc4")[0].position.y+200
 		5:
-			get_tree().change_scene_to_file("res://scenes/throne_room.tscn")
+			if get_tree().get_first_node_in_group("Player").secret_ending == false:
+				get_tree().change_scene_to_file("res://scenes/throne_room.tscn")
+			else:
+				get_tree().change_scene_to_file("res://scenes/special_ending.tscn")
