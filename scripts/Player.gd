@@ -46,6 +46,9 @@ var battery_recharging = false
 var shrines
 var shrine_type = "default"
 var direction = "None"
+var inside = false
+
+var NPCInteraction = false
 
 var secret_ending = false
 
@@ -136,29 +139,59 @@ func _process(delta):
 				if Input.is_action_pressed("interact"):
 					get_tree().get_nodes_in_group("DoorMaze")[0].visible = false
 					get_tree().get_nodes_in_group("DoorMaze")[0].get_children()[0].get_children()[0].disabled = true
+					get_tree().get_nodes_in_group("Player")[0].messageSummary = "MazeGate"
+					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					
 			"shrinemain2":
 				if Input.is_action_pressed("interact"):
 					get_tree().get_nodes_in_group("DoorMaze")[0].visible = false
 					get_tree().get_nodes_in_group("DoorMaze")[0].get_children()[0].get_children()[0].disabled = true
+					get_tree().get_nodes_in_group("Player")[0].messageSummary = "MazeGate"
+					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					
 			"shrinesecret":
 				if Input.is_action_pressed("interact"):
 					secret_ending = true
 					get_tree().get_nodes_in_group("DoorDecoy")[0].visible = false	
 					get_tree().get_nodes_in_group("DoorDecoy")[0].get_children()[0].get_children()[0].disabled = true
+					get_tree().get_nodes_in_group("Player")[0].messageSummary = "SpecialShrine"
+					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					
 			"shrinegatefake":
 				if Input.is_action_pressed("interact") && leaves_collected == 3:
 					get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 					leaves_collected -= 3
+					get_tree().get_nodes_in_group("Player")[0].messageSummary = "DecoyShrine"
+					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+				elif Input.is_action_pressed("interact"):
+					get_tree().get_nodes_in_group("Player")[0].messageSummary = "NoLeaves"
+					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					
 			"shrinegate1":
 				if Input.is_action_pressed("interact") && leaves_collected == 3:
 					get_tree().get_nodes_in_group("DoorGate")[0].visible = false
 					get_tree().get_nodes_in_group("DoorGate")[0].get_children()[0].get_children()[0].disabled = true
 					leaves_collected -= 3
+					for x in get_tree().get_nodes_in_group("Rain"):
+						x.emitting = false
+					get_tree().get_nodes_in_group("Player")[0].messageSummary = "ShrineFinal"
+					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+				elif Input.is_action_pressed("interact"):
+					get_tree().get_nodes_in_group("Player")[0].messageSummary = "NoLeaves"
+					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					
 			"shrinegate2":
 				if Input.is_action_pressed("interact") && leaves_collected == 3:
 					get_tree().get_nodes_in_group("DoorGate")[0].visible = false
 					get_tree().get_nodes_in_group("DoorGate")[0].get_children()[0].get_children()[0].disabled = true
 					leaves_collected -= 3
+					for x in get_tree().get_nodes_in_group("Rain"):
+						x.emitting = false
+					get_tree().get_nodes_in_group("Player")[0].messageSummary = "ShrineFinal"
+					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+				elif Input.is_action_pressed("interact"):
+					get_tree().get_nodes_in_group("Player")[0].messageSummary = "NoLeaves"
+					get_tree().get_nodes_in_group("Player")[0].messagePending = true
 					
 		if flashlight_switched == false:
 			match flashlight_mode:
@@ -187,22 +220,38 @@ func _process(delta):
 # movement
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
-	var direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
-
+	var directionVector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
+	var movingx = false
+	var movingy = false
 	var targetVelocity = Vector2.ZERO
 	
 	if direction.length() > 1:
-		direction = direction.normalized()
+		directionVector = directionVector.normalized()
 		
-	if direction.x:
-		targetVelocity.x = direction.x * SPEED
+	if directionVector.x:
+		targetVelocity.x = directionVector.x * SPEED
+		movingx = true
 	else:
 		targetVelocity.x = move_toward(velocity.x, 0, SPEED)
+		movingx = false
 
-	if direction.y:
-		targetVelocity.y = direction.y * SPEED
+	if directionVector.y:
+		targetVelocity.y = directionVector.y * SPEED
+		movingy = true
 	else:
 		targetVelocity.y = move_toward(velocity.y, 0, SPEED)
+		movingy = false
+	
+	if inside==false && (movingx || movingy):
+		if direction == "right":
+			targetVelocity.x += SPEED/3
+		if direction == "left":
+			targetVelocity.x -= SPEED/3
+	elif (movingx || movingy):
+		if direction == "right":
+			targetVelocity.x += SPEED/5
+		if direction == "left":
+			targetVelocity.x -= SPEED/5
 
 	velocity = velocity.lerp(targetVelocity, lerp_strength)
 	

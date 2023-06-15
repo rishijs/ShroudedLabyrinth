@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm6s5uiw82ait"
-path="res://.godot/imported/floor_small.png-a3b2c403af3c5eb6632994325ef35217.ctex"
+uid="uid://c2wkcw5oy442d"
+path="res://.godot/imported/mr_pontutti_shrine.png-4d533b00d1166bb059a73ed552473e5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://floor_small.png"
-dest_files=["res://.godot/imported/floor_small.png-a3b2c403af3c5eb6632994325ef35217.ctex"]
+source_file="res://custom/mr_pontutti_shrine.png"
+dest_files=["res://.godot/imported/mr_pontutti_shrine.png-4d533b00d1166bb059a73ed552473e5b.ctex"]
 
 [params]
 

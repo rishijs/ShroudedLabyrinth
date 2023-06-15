@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dalydgmn1k840"
-path="res://.godot/imported/wall64dr.png-ec613f5ae1ca8f39d1e8036d8bb24824.ctex"
+uid="uid://bx0j45yh1pnyq"
+path="res://.godot/imported/bloodwallrotdark.png-0c35124136778b3281b37c377276a559.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wall64dr.png"
-dest_files=["res://.godot/imported/wall64dr.png-ec613f5ae1ca8f39d1e8036d8bb24824.ctex"]
+source_file="res://custom/bloodwallrotdark.png"
+dest_files=["res://.godot/imported/bloodwallrotdark.png-0c35124136778b3281b37c377276a559.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0ullo5hq8e5n"
-path="res://.godot/imported/green_square.png-779c1da097f1bbf15fbb694ff940d17d.ctex"
+uid="uid://cf5k0a5jjksgd"
+path="res://.godot/imported/ArrowOp3.png-edf2f7d4d83c53daf1f1746ad6aeb2ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://green_square.png"
-dest_files=["res://.godot/imported/green_square.png-779c1da097f1bbf15fbb694ff940d17d.ctex"]
+source_file="res://custom/ArrowOp3.png"
+dest_files=["res://.godot/imported/ArrowOp3.png-edf2f7d4d83c53daf1f1746ad6aeb2ca.ctex"]
 
 [params]
 

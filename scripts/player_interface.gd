@@ -1,5 +1,16 @@
 extends CanvasLayer
 
+var warning1 = false;
+var warning2 = false;
+var warning3 = false;
+var warning1CD = false;
+var warning2CD = false;
+var warning3CD = false;
+var warning_display_time = 3;
+var time1 = 0
+var time2 = 0
+var time3 = 0
+var warning_cooldown = 10;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,6 +20,44 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
+	if warning1 || warning1CD:
+		time1 += delta
+		if time1 > warning_display_time && warning1 == true:
+			time1 = 0
+			warning1 = false
+			get_tree().get_first_node_in_group("warning1").visible = false
+		if time1 > warning_cooldown && warning1CD == true:
+			warning1CD = false
+			time1 = 0
+						
+	if warning2 || warning2CD:
+		time2 += delta
+		if time2 > warning_display_time && warning2 == true:
+			time2 = 0
+			warning2 = false
+			get_tree().get_first_node_in_group("warning2").visible = false
+		if time2 > warning_cooldown && warning2CD == true:
+			warning2CD = false
+			time2 = 0
+			
+	if warning3 || warning3CD:
+		time3 += delta
+		if time3 > warning_display_time && warning3 == true:
+			time3 = 0
+			warning3 = false
+			get_tree().get_first_node_in_group("warning3").visible = false
+		if time3 > warning_cooldown && warning3CD == true:
+			warning3CD = false
+			time3 = 0
+	
+	if warning1:
+		get_tree().get_first_node_in_group("warning1").visible = true
+	if warning2:
+		get_tree().get_first_node_in_group("warning2").visible = true
+	if warning3:
+		get_tree().get_first_node_in_group("warning3").visible = true
+		
+		
 	match get_tree().get_first_node_in_group("Player").leaves_collected:
 		0:
 			get_tree().get_first_node_in_group("leaf1text").visible = false
@@ -26,3 +75,18 @@ func _process(delta):
 			get_tree().get_first_node_in_group("leaf1text").visible = true
 			get_tree().get_first_node_in_group("leaf2text").visible = true
 			get_tree().get_first_node_in_group("leaf3text").visible = true
+	
+	if get_tree().get_nodes_in_group("Player")[0].battery < get_tree().get_nodes_in_group("Player")[0].low_battery_threshold:
+		if warning1CD == false:
+			warning1 = true
+			warning1CD = true
+		
+	if get_tree().get_nodes_in_group("Player")[0].insanity > get_tree().get_nodes_in_group("Player")[0].insanity_threshold:
+		if warning2CD == false:
+			warning2 = true
+			warning2CD = true
+		
+	if get_tree().get_nodes_in_group("Player")[0].health < get_tree().get_nodes_in_group("Player")[0].low_health_threshold:
+		if warning3CD == false:	
+			warning3 = true
+			warning3CD = true

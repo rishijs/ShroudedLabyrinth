@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwqckmw3itych"
-path="res://.godot/imported/wall64d.png-cfc1538c1c9ad265b1728e6450f8c9d1.ctex"
+uid="uid://d03uxf3hcss7j"
+path="res://.godot/imported/ArrowOp2.png-317d090e7469e0db504c4978eb13d283.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wall64d.png"
-dest_files=["res://.godot/imported/wall64d.png-cfc1538c1c9ad265b1728e6450f8c9d1.ctex"]
+source_file="res://custom/ArrowOp2.png"
+dest_files=["res://.godot/imported/ArrowOp2.png-317d090e7469e0db504c4978eb13d283.ctex"]
 
 [params]
 

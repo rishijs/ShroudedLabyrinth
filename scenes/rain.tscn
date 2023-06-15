@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://fw310mfheixe"]
+
+[ext_resource type="Script" path="res://scripts/rain.gd" id="1_bq41y"]
+
+[sub_resource type="Gradient" id="Gradient_6v1gy"]
+colors = PackedColorArray(0, 0, 0.541176, 1, 1, 0, 0, 1)
+
+[node name="Rain" type="CanvasLayer"]
+script = ExtResource("1_bq41y")
+
+[node name="RightWindRain" type="CPUParticles2D" parent="." groups=["Rain"]]
+visible = false
+position = Vector2(513, -3)
+emitting = false
+amount = 1500
+lifetime = 1.5
+emission_shape = 3
+emission_rect_extents = Vector2(1500, 1)
+gravity = Vector2(980, 980)
+linear_accel_max = 6.06
+tangential_accel_max = 6.06
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_6v1gy")
+
+[node name="LeftWindRain" type="CPUParticles2D" parent="." groups=["Rain"]]
+visible = false
+position = Vector2(1381, -4)
+emitting = false
+amount = 1500
+lifetime = 1.5
+speed_scale = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(1500, 1)
+gravity = Vector2(-980, 980)
+linear_accel_max = 6.06
+tangential_accel_max = 6.06
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_6v1gy")

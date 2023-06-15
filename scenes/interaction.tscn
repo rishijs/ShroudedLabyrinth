@@ -5,6 +5,7 @@ subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_20ufy"]
 font = SubResource("SystemFont_7vt55")
+font_size = 30
 font_color = Color(1, 0, 0.0156863, 1)
 
 [sub_resource type="GDScript" id="GDScript_86rv3"]
@@ -30,31 +31,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 27.5
+offset_left = -21.0
 offset_top = -89.0
-offset_right = 67.5
+offset_right = 19.0
 offset_bottom = -49.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
 color = Color(0, 0, 0, 1)
-
-[node name="text" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -92.0
-offset_right = 45.0
-offset_bottom = -66.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-text = "Interact"
-label_settings = SubResource("LabelSettings_20ufy")
-script = SubResource("GDScript_86rv3")
 
 [node name="text2" type="Label" parent="."]
 anchors_preset = 8
@@ -62,10 +45,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 32.5
-offset_top = -92.0
-offset_right = 117.5
-offset_bottom = -66.0
+offset_left = -10.0
+offset_top = -91.0
+offset_right = 75.0
+offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -73,4 +56,3 @@ text = "E
 "
 label_settings = SubResource("LabelSettings_20ufy")
 script = SubResource("GDScript_86rv3")
-metadata/_edit_use_anchors_ = true
