@@ -1,0 +1,355 @@
+[gd_scene load_steps=10 format=3 uid="uid://byy8abxnm3pdd"]
+
+[ext_resource type="Script" path="res://scripts/DialogueList.gd" id="1_d3rtn"]
+[ext_resource type="Texture2D" uid="uid://bxla1l07wjogh" path="res://custom/ArrowOp1.png" id="2_32d16"]
+[ext_resource type="Texture2D" uid="uid://d03uxf3hcss7j" path="res://custom/ArrowOp2.png" id="3_2ep5x"]
+[ext_resource type="Script" path="res://scripts/ItemButtonSelect.gd" id="3_pyyua"]
+[ext_resource type="Texture2D" uid="uid://cf5k0a5jjksgd" path="res://custom/ArrowOp3.png" id="4_g1rav"]
+[ext_resource type="Texture2D" uid="uid://b5ux86drugvlw" path="res://custom/ArrowOp4.png" id="5_clk7h"]
+
+[sub_resource type="SystemFont" id="SystemFont_de4cf"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0fmfi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqk1r"]
+bg_color = Color(1, 0, 0, 0.772549)
+
+[node name="NPC_UI" type="CanvasLayer"]
+
+[node name="List" type="ColorRect" parent="." groups=["NPCPrompts"]]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = -328.0
+offset_right = -256.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 0.588235)
+script = ExtResource("1_d3rtn")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="List"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="List/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ItemList" type="ItemList" parent="List/ScrollContainer/VBoxContainer" groups=["DialogueList"]]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_de4cf")
+theme_override_font_sizes/font_size = 18
+allow_rmb_select = true
+auto_height = true
+fixed_icon_size = Vector2i(30, 30)
+
+[node name="NPCMessage" type="ColorRect" parent="." groups=["NPCMessage"]]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.392157)
+
+[node name="Message" type="Label" parent="NPCMessage"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "PLACEHOLDER TEXT"
+label_settings = SubResource("LabelSettings_0fmfi")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Starter_Item_Select" type="ColorRect" parent="." groups=["ItemSelect"]]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -272.0
+offset_top = -288.0
+offset_right = 272.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+color = Color(0.2, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Starter_Item_Select"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -72.0
+offset_right = -14.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.12, 1.72)
+alignment = 1
+
+[node name="Item1" type="TextureRect" parent="Starter_Item_Select/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_32d16")
+expand_mode = 2
+script = ExtResource("3_pyyua")
+
+[node name="Button" type="Button" parent="Starter_Item_Select/HBoxContainer/Item1" groups=["Item1Button"]]
+self_modulate = Color(0, 0, 0, 0.784314)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -32.6512
+offset_right = 29.0
+offset_bottom = 60.3488
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_oqk1r")
+
+[node name="Item2" type="TextureRect" parent="Starter_Item_Select/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_2ep5x")
+expand_mode = 2
+script = ExtResource("3_pyyua")
+
+[node name="Button" type="Button" parent="Starter_Item_Select/HBoxContainer/Item2" groups=["Item2Button"]]
+self_modulate = Color(0, 0, 0, 0.784314)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0943
+offset_top = -32.6512
+offset_right = 28.9057
+offset_bottom = 60.3488
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_oqk1r")
+
+[node name="Item3" type="TextureRect" parent="Starter_Item_Select/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_g1rav")
+expand_mode = 2
+script = ExtResource("3_pyyua")
+
+[node name="Button" type="Button" parent="Starter_Item_Select/HBoxContainer/Item3" groups=["Item3Button"]]
+self_modulate = Color(0, 0, 0, 0.784314)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.717
+offset_top = -32.6512
+offset_right = 29.283
+offset_bottom = 60.3488
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_oqk1r")
+
+[node name="Item4" type="TextureRect" parent="Starter_Item_Select/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_clk7h")
+expand_mode = 2
+script = ExtResource("3_pyyua")
+
+[node name="Button" type="Button" parent="Starter_Item_Select/HBoxContainer/Item4" groups=["Item4Button"]]
+self_modulate = Color(0, 0, 0, 0.784314)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.8113
+offset_top = -32.6512
+offset_right = 29.1887
+offset_bottom = 60.3488
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_oqk1r")
+
+[node name="I1" type="Label" parent="Starter_Item_Select" groups=["StarterItemName"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = 24.0
+offset_right = -136.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "ITEM 1"
+uppercase = true
+
+[node name="I2" type="Label" parent="Starter_Item_Select" groups=["StarterItemName"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 24.0
+offset_right = -8.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "ITEM 2
+"
+uppercase = true
+
+[node name="I3" type="Label" parent="Starter_Item_Select" groups=["StarterItemName"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 120.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "ITEM 3
+"
+uppercase = true
+
+[node name="I4" type="Label" parent="Starter_Item_Select" groups=["StarterItemName"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 136.0
+offset_top = 24.0
+offset_right = 248.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "ITEM 4"
+uppercase = true
+
+[node name="D1" type="Label" parent="Starter_Item_Select" groups=["StarterItemDescription"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = 40.0
+offset_right = -136.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "DESCRIPTION"
+autowrap_mode = 3
+
+[node name="D2" type="Label" parent="Starter_Item_Select" groups=["StarterItemDescription"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = 40.0
+offset_right = -8.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "DESCRIPTION
+"
+autowrap_mode = 3
+
+[node name="D3" type="Label" parent="Starter_Item_Select" groups=["StarterItemDescription"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "DESCRIPTION
+"
+autowrap_mode = 3
+
+[node name="D4" type="Label" parent="Starter_Item_Select" groups=["StarterItemDescription"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 136.0
+offset_top = 40.0
+offset_right = 248.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "DESCRIPTION"
+autowrap_mode = 3
+
+[connection signal="item_selected" from="List/ScrollContainer/VBoxContainer/ItemList" to="List" method="_on_item_list_item_selected"]
+[connection signal="pressed" from="Starter_Item_Select/HBoxContainer/Item1/Button" to="Starter_Item_Select/HBoxContainer/Item1" method="_on_button_pressed"]
+[connection signal="pressed" from="Starter_Item_Select/HBoxContainer/Item2/Button" to="Starter_Item_Select/HBoxContainer/Item2" method="_on_button_pressed"]
+[connection signal="pressed" from="Starter_Item_Select/HBoxContainer/Item3/Button" to="Starter_Item_Select/HBoxContainer/Item3" method="_on_button_pressed"]
+[connection signal="pressed" from="Starter_Item_Select/HBoxContainer/Item4/Button" to="Starter_Item_Select/HBoxContainer/Item4" method="_on_button_pressed"]

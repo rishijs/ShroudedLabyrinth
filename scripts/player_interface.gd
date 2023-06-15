@@ -12,6 +12,15 @@ var time2 = 0
 var time3 = 0
 var warning_cooldown = 10;
 
+var image1 = Image.load_from_file("res://custom/ArrowOp1.png")
+var texture1 = ImageTexture.create_from_image(image1)
+var image2 = Image.load_from_file("res://custom/ArrowOp2.png")
+var texture2 = ImageTexture.create_from_image(image2)
+var image3 = Image.load_from_file("res://custom/ArrowOp3.png")
+var texture3 = ImageTexture.create_from_image(image3)
+var image4 = Image.load_from_file("res://custom/ArrowOp4.png")
+var texture4 = ImageTexture.create_from_image(image4)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -20,6 +29,20 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
+	if get_tree().get_first_node_in_group("Player").item_equipped == -1:
+		get_tree().get_first_node_in_group("ItemEquppedIcon").get_parent().visible = false
+	else:
+		match get_tree().get_first_node_in_group("Player").item_equipped:
+			1:
+				get_tree().get_first_node_in_group("ItemEquppedIcon").texture = texture1
+			2:
+				get_tree().get_first_node_in_group("ItemEquppedIcon").texture = texture2
+			3:
+				get_tree().get_first_node_in_group("ItemEquppedIcon").texture = texture3
+			4:
+				get_tree().get_first_node_in_group("ItemEquppedIcon").texture = texture4
+		get_tree().get_first_node_in_group("ItemEquppedIcon").get_parent().visible = true
+		
 	if warning1 || warning1CD:
 		time1 += delta
 		if time1 > warning_display_time && warning1 == true:

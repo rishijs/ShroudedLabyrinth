@@ -47,7 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://cp2jx2alpi32l" path="res://addons/kenney_prototype_textures/red/texture_10.png" id="36_nfsfo"]
 [ext_resource type="Script" path="res://scripts/Outside.gd" id="37_f7c7q"]
 [ext_resource type="PackedScene" uid="uid://fw310mfheixe" path="res://scenes/rain.tscn" id="41_mtqpm"]
-[ext_resource type="PackedScene" uid="uid://byy8abxnm3pdd" path="res://NPC_UI.tscn" id="47_ibo7w"]
+[ext_resource type="PackedScene" uid="uid://byy8abxnm3pdd" path="res://scenes/NPC_UI.tscn" id="47_ibo7w"]
 [ext_resource type="Texture2D" uid="uid://ccjelptxmp5j5" path="res://addons/kenney_prototype_textures/light/texture_07.png" id="47_tvofk"]
 [ext_resource type="Script" path="res://scripts/NPC.gd" id="48_k1ccy"]
 
@@ -451,7 +451,7 @@ size = Vector2(16, 16)
 size = Vector2(1000, 1040)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aapqn"]
-size = Vector2(1820, 1820)
+size = Vector2(2120, 2120)
 
 [node name="main" type="Node2D"]
 
@@ -2391,13 +2391,12 @@ script = ExtResource("48_k1ccy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/StaticBody2D"]
 position = Vector2(0.000976563, 0.00292969)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_gw6lb")
 
 [node name="Area2D" type="Area2D" parent="NPC"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Area2D"]
-position = Vector2(510.001, 490.001)
+position = Vector2(660.001, 639.998)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_aapqn")
 

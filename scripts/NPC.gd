@@ -24,26 +24,34 @@ var texture3 = ImageTexture.create_from_image(image3)
 var image4 = Image.load_from_file("res://custom/ArrowOp4.png")
 var texture4 = ImageTexture.create_from_image(image4)
 
-var initial_dialogue = ["You don't belong here, go home.", "Stubborn one aren't you ... fine.", 
-"I am the failure of a warden of these subdued lands.","I can't ask you to right my wrongs, these lands are far gone."
-,"Now, leave me be.","I said leave me alone ... come back later and I might be in the mood to tell you more."]
+var selecting_item = false
+var wait_before_select_time = 0
 
-var extra_dialogue = ["It's said that the direction the wind blows, reveals the location of the shrine, 
-our last hope.",
-"I doubt you will be able to do this, but if you activate the shrine in that haunted maze, 
-something cool happens.",
-"Oh, if you collect a certain amount of leaves, which I doubt you will get a single one,
- you can use them on a shrine."
-,"I do know of a few shortcuts in these lands, top secret stuff, but do look for question marks.",
-"You know enough about me, I'm a baboon that can't protect what I swore I would, and mope all day.",
-"Thanks for keeping me company, I hate to admit it, but you are my only chance.
- Take 1 of these 4 relics, they'll give you a fighting chance."]
+var initial_dialogue = ["You don't belong here, go home.", "Desparate soul aren't you ... fine.", 
+"I am the warden of this cursed labyrinth.","I watch too many lost souls lose their lives in these ruins."
+,"Put your meaningless ambitions to rest, now leave me alone.","I said leave me alone, not in the mood right now."]
+
+var extra_dialogue = ["It's said that the direction the wind blows, reveals the location of the shrine, not that you'll find it anyways.",
+"If the shrine is activated, for the first time in centuries, the labyrinth will open its doors. Put your meaningless ambitions to rest, now leave me alone.",
+"If you collect a certain amount of leaves, doubt you will find even one, it's said that you can earn a powerful shrine's favor. Put your meaningless ambitions to rest, 
+now leave me alone."
+,"I do know of a few shortcuts in these lands, look for question marks.","You know enough about me, I'm a lonely baboon that mopes all day.",
+"Those are relics, I doubt you would put a relic to proper use, but its better than having them sit around. Take your pick, not letting you have more than 1."]
 
 var extra_dialogue_headers = ["What's with the wind?","How can I help?","What are these leaves?"
-,"Hidden pathways?","Tell me more about yourself!","A special gift"]
+,"Hidden pathways?","Tell me more about yourself!","What are those items laying beside you?"]
+
+var starter_item_names = ["Efficient batteries", "Mind Shaping Scroll", "Triforce Technique", "Deadly Beam Augment"]
+var starter_item_descriptions = ["++ Flashlight Efficiency\n -- Max battery.", 
+"+++ Insanity Resistance\n -- Max Health",
+ "+ All 3 Attributes\n - Insanity Resistance", 
+"++ Flashlight Strength\n - Flashlight Efficiency"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().get_nodes_in_group("DialogueList")[0].add_item("Nevermind",texture1,true)
+	addedDialogue += 1
+	
 	for x in range(extra_dialogue.size()):
 		match addedDialogue%4:
 			0:
@@ -55,13 +63,18 @@ func _ready():
 			3:
 				get_tree().get_nodes_in_group("DialogueList")[0].add_item(extra_dialogue_headers[x],texture4,true)		
 		addedDialogue += 1
+		
+	for x in range(get_tree().get_nodes_in_group("StarterItemName").size()):
+		get_tree().get_nodes_in_group("StarterItemName")[x].text = starter_item_names[x]
+	for x in range(get_tree().get_nodes_in_group("StarterItemDescription").size()):
+		get_tree().get_nodes_in_group("StarterItemDescription")[x].text = starter_item_descriptions[x]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
 	
-	if time > 1:
+	if time > 1 && readyTalk == false:
 		readyTalk = true
 	
 	if get_tree().get_nodes_in_group("Player")[0].NPCInteraction == true:
@@ -95,7 +108,7 @@ func _process(delta):
 	if interacting == true:
 		skip_timer += delta
 		if skip_timer > skip_delay:
-			if Input.is_action_pressed("interact") && message_timer < message_delay/4*3:
+			if Input.is_action_pressed("interact") && message_timer > message_delay/4:
 				if messages_queued == true:
 					message_timer = message_delay
 					skip_timer = 0
@@ -117,12 +130,18 @@ func _process(delta):
 				messages_left -= 1
 				current_message += 1
 		
-		if messages_left == 0 && not extra_messages:
+		if messages_left == 0 && not extra_messages && not selecting_item:
 			message_timer += delta
 			if message_timer > message_delay:
 				interacting = false
-			
-		
+	
+	if selecting_item == true:
+		wait_before_select_time += delta
+		if wait_before_select_time > message_delay:
+			get_tree().get_nodes_in_group("ItemSelect")[0].visible = true
+			get_tree().get_nodes_in_group("NPCMessage")[0].visible = false
+			get_tree().get_nodes_in_group("NPCPrompts")[0].visible = false
+	
 	if interacting == false:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		get_tree().get_nodes_in_group("NPCInterface")[0].visible = false

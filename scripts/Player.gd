@@ -8,9 +8,9 @@ extends CharacterBody2D
 @export var max_battery = 150
 @export var lerp_strength = 0.1
 
-@export var health = max_health
+@export var health = 0
 @export var insanity = 0
-@export var battery = max_battery
+@export var battery = 0
 @export var battery_recharge_rate = 0.09
 
 #N * 100 = value per second
@@ -35,6 +35,9 @@ extends CharacterBody2D
 
 @export var start_time = 5
 @export var dev_mode = true
+
+var item_equipped = -1
+var stats_gained = false
 
 var in_light = false
 var flashlight_switched = false
@@ -61,6 +64,9 @@ func _ready():
 	else:
 		direction = "right"
 	
+	battery = max_battery
+	health = max_health
+	
 # tick
 func _process(delta):
 	
@@ -71,7 +77,38 @@ func _process(delta):
 			insanity=0
 			health=max_health
 			battery=max_battery
-			
+		
+		match item_equipped && stats_gained == false:
+			1:
+				max_battery -= 50
+				battery -= 50
+				full_power_light_consumption *= 0.5
+				infrared_light_consumption *= 0.5
+				scanner_light_consumption *= 0.5
+				stats_gained = true
+			2:
+				max_insanity += 100
+				max_health -= 75
+				insanity_overtime *= 0.75
+				stats_gained = true
+			3:
+				max_battery += 50
+				max_insanity += 50
+				max_health += 50
+				insanity_overtime *= 1.25
+				stats_gained = true
+			4:
+				high_dmg *= 1.5
+				infrared_dmg *= 1.5
+				scanner_dmg *= 1.5
+				insanity_cure_high *= 1.25
+				insanity_cure_infrared *= 1.25
+				insanity_cure_scanner *= 1.25
+				full_power_light_consumption *= 1.25
+				infrared_light_consumption *= 1.25
+				scanner_light_consumption *= 1.25
+				stats_gained = true
+		
 		if insanity<0:
 			insanity = 0
 		if health<=0:
