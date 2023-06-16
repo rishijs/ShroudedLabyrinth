@@ -100,9 +100,9 @@ func _process(delta):
 			get_tree().get_first_node_in_group("leaf3text").visible = true
 	
 	if get_tree().get_nodes_in_group("Player")[0].battery < get_tree().get_nodes_in_group("Player")[0].low_battery_threshold:
-		if warning1CD == false:
-			warning1 = true
-			warning1CD = true
+		if warning3CD == false:
+			warning3 = true
+			warning3CD = true
 		
 	if get_tree().get_nodes_in_group("Player")[0].insanity > get_tree().get_nodes_in_group("Player")[0].insanity_threshold:
 		if warning2CD == false:
@@ -110,6 +110,6 @@ func _process(delta):
 			warning2CD = true
 		
 	if get_tree().get_nodes_in_group("Player")[0].health < get_tree().get_nodes_in_group("Player")[0].low_health_threshold:
-		if warning3CD == false:	
-			warning3 = true
-			warning3CD = true
+		if warning1CD == false:	
+			warning1 = true
+			warning1CD = true

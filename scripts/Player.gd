@@ -31,13 +31,17 @@ extends CharacterBody2D
 
 @export var high_dmg = 1
 @export var infrared_dmg = 0.1
-@export var scanner_dmg = 0
 
 @export var start_time = 5
-@export var dev_mode = true
+@export var dev_mode = false
 
 var item_equipped = -1
 var stats_gained = false
+
+var haunted_ghost = false
+var haunted_puppet = false
+var targetted_enemy_body:CharacterBody2D
+var enemy_targetted = false
 
 var in_light = false
 var flashlight_switched = false
@@ -100,7 +104,6 @@ func _process(delta):
 			4:
 				high_dmg *= 1.5
 				infrared_dmg *= 1.5
-				scanner_dmg *= 1.5
 				insanity_cure_high *= 1.25
 				insanity_cure_infrared *= 1.25
 				insanity_cure_scanner *= 1.25
@@ -253,6 +256,14 @@ func _process(delta):
 			if time_flashlight_switch >flashlight_switch_delay:
 				time_flashlight_switch = 0
 				flashlight_switched=false
+				
+		if enemy_targetted == true:
+			match flashlight_mode:
+				"HighPower":
+					targetted_enemy_body.get_parent().health -= high_dmg
+				"Infrared":
+					targetted_enemy_body.get_parent().health -= infrared_dmg
+				
 	
 # movement
 func _physics_process(delta):
@@ -300,11 +311,15 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	pass #enemies / scan
+	if body.get_parent().get_groups()[0] == "Ghost":
+		targetted_enemy_body = body
+		enemy_targetted = true
 
 
 func _on_area_2d_body_exited(body):
-	pass #enemies / scan
+	if body.get_parent().get_groups()[0] == "Ghost":
+		targetted_enemy_body = null
+		enemy_targetted = false
 
 
 func _on_area_2d_area_entered(area):

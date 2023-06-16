@@ -152,7 +152,7 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if readyTalk == true:
-		if interacting == false:
+		if interacting == false && get_tree().get_nodes_in_group("Player")[0] == body:
 			get_tree().get_nodes_in_group("Player")[0].NPCInteraction = true
 			get_tree().get_nodes_in_group("InteractionInterface")[0].visible = true	
 		get_tree().get_nodes_in_group("PlayerInterface")[0].visible = false
@@ -160,8 +160,9 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	if readyTalk == true:
-		get_tree().get_nodes_in_group("Player")[0].NPCInteraction = false
-		get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
-		get_tree().get_nodes_in_group("Player")[0]
-		get_tree().get_nodes_in_group("PlayerInterface")[0].visible = true
-		interacting = false
+		if get_tree().get_nodes_in_group("Player")[0] == body:
+			get_tree().get_nodes_in_group("Player")[0].NPCInteraction = false
+			get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
+			get_tree().get_nodes_in_group("Player")[0]
+			get_tree().get_nodes_in_group("PlayerInterface")[0].visible = true
+			interacting = false

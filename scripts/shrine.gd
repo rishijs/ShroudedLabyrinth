@@ -47,15 +47,17 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if activated:
-		if get_tree().get_nodes_in_group("Player")[0].NPCInteraction == false:	
-			get_tree().get_nodes_in_group("InteractionInterface")[0].visible = true	
-			get_tree().get_nodes_in_group("Player")[0].in_light = true
-			shrine_status = true
+		if get_tree().get_nodes_in_group("Player")[0]:
+			if get_tree().get_nodes_in_group("Player")[0].NPCInteraction == false:	
+				get_tree().get_nodes_in_group("InteractionInterface")[0].visible = true	
+				get_tree().get_nodes_in_group("Player")[0].in_light = true
+				shrine_status = true
 
 
 func _on_body_exited(body):
 	if activated && get_tree().get_nodes_in_group("InteractionInterface").size() > 0:
-		if get_tree().get_nodes_in_group("Player")[0].NPCInteraction == false:	
-			get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
-			get_tree().get_nodes_in_group("Player")[0].in_light = false
-			shrine_status = false
+		if get_tree().get_nodes_in_group("Player")[0]:
+			if get_tree().get_nodes_in_group("Player")[0].NPCInteraction == false:	
+				get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
+				get_tree().get_nodes_in_group("Player")[0].in_light = false
+				shrine_status = false

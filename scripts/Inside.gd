@@ -14,4 +14,5 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if time > 3:
-		get_tree().get_first_node_in_group("Player").inside = true
+		if get_tree().get_first_node_in_group("Player") == body:
+			get_tree().get_first_node_in_group("Player").inside = true

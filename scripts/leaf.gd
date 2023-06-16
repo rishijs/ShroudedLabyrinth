@@ -11,6 +11,7 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	if get_tree().get_nodes_in_group("Player")[0].time > get_tree().get_nodes_in_group("Player")[0].start_time:
-		get_tree().get_nodes_in_group("Player")[0].leaves_collected += 1
-		get_node("./").queue_free()
+	if get_tree().get_nodes_in_group("Player")[0] == body:
+		if get_tree().get_nodes_in_group("Player")[0].time > get_tree().get_nodes_in_group("Player")[0].start_time:
+			get_tree().get_nodes_in_group("Player")[0].leaves_collected += 1
+			get_node("./").queue_free()

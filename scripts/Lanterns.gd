@@ -52,9 +52,11 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if get_tree().get_nodes_in_group("Player").size() > 0:
-		get_tree().get_nodes_in_group("Player")[0].in_light = true
+		if get_tree().get_first_node_in_group("Player") == body:
+			get_tree().get_nodes_in_group("Player")[0].in_light = true
 
 
 func _on_area_2d_body_exited(body):
 	if get_tree().get_nodes_in_group("Player").size() > 0:
-		get_tree().get_nodes_in_group("Player")[0].in_light = false
+		if get_tree().get_first_node_in_group("Player") == body:
+			get_tree().get_nodes_in_group("Player")[0].in_light = false
