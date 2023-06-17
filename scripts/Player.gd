@@ -3,15 +3,15 @@ extends CharacterBody2D
 @export var SPEED = 200.0
 @export var flashlight_mode = "Off"
 @export var flashlight_switch_delay = 0.5
-@export var max_health = 150
-@export var max_insanity = 150
-@export var max_battery = 150
+@export var max_health = 100
+@export var max_insanity = 100
+@export var max_battery = 100
 @export var lerp_strength = 0.1
 
 @export var health = 0
 @export var insanity = 0
 @export var battery = 0
-@export var battery_recharge_rate = 0.09
+@export var battery_recharge_rate = 0.3
 
 #N * 100 = value per second
 @export var full_power_light_consumption = 0.065
@@ -22,21 +22,23 @@ extends CharacterBody2D
 @export var insanity_cure_high = 0.1
 @export var insanity_cure_infrared = 0.225
 @export var insanity_cure_scanner = 0.15
-@export var insanity_cure_light = 0.2
+@export var insanity_cure_light = 0.25
 
 @export var health_dmg_insane = 0.05
 @export var insanity_threshold = max_insanity*.9
 @export var low_health_threshold = 30
 @export var low_battery_threshold = 20
 
-@export var high_dmg = 1
-@export var infrared_dmg = 0.1
+@export var high_dmg = 1.5
+@export var infrared_dmg = 0.7
 
 @export var start_time = 5
-@export var dev_mode = false
+@export var dev_mode = true
+@export var rotation_speed = 10
 
 var item_equipped = -1
 var stats_gained = false
+var NPCInteraction = false
 
 var haunted_ghost = false
 var haunted_puppet = false
@@ -49,15 +51,19 @@ var time = 0
 var time_flashlight_switch = 0
 var leaves_collected = 0
 var battery_recharging = false
+var previous_mode = "Scanner"
 
 var shrines
 var shrine_type = "default"
 var direction = "None"
 var inside = false
 
-var NPCInteraction = false
-
 var secret_ending = false
+var special_ending = false
+
+var deaths = 0
+var attempts = 1
+var time_taken = 0
 
 # ready
 func _ready():
@@ -70,6 +76,9 @@ func _ready():
 	
 	battery = max_battery
 	health = max_health
+	
+	for x in get_tree().get_nodes_in_group("Ghost"):
+		add_collision_exception_with(x)
 	
 # tick
 func _process(delta):
@@ -114,6 +123,8 @@ func _process(delta):
 		
 		if insanity<0:
 			insanity = 0
+		if insanity > max_insanity:
+			insanity = max_insanity
 		if health<=0:
 			if secret_ending == true:
 				get_tree().change_scene_to_file("res://scenes/special_ending.tscn")
@@ -158,9 +169,7 @@ func _process(delta):
 		else:
 			flashlight_mode = "Off"
 			get_tree().get_first_node_in_group("Flashlight").visible = false
-		
-		if(Input.is_action_pressed("emergency_turn_light_off")):
-			flashlight_mode = "Off"
+
 		
 		var curr_shrine = false
 		for x in shrines:
@@ -179,33 +188,34 @@ func _process(delta):
 				if Input.is_action_pressed("interact"):
 					get_tree().get_nodes_in_group("DoorMaze")[0].visible = false
 					get_tree().get_nodes_in_group("DoorMaze")[0].get_children()[0].get_children()[0].disabled = true
-					get_tree().get_nodes_in_group("Player")[0].messageSummary = "MazeGate"
-					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "MazeGate"
+					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
 					
 			"shrinemain2":
 				if Input.is_action_pressed("interact"):
 					get_tree().get_nodes_in_group("DoorMaze")[0].visible = false
 					get_tree().get_nodes_in_group("DoorMaze")[0].get_children()[0].get_children()[0].disabled = true
-					get_tree().get_nodes_in_group("Player")[0].messageSummary = "MazeGate"
-					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "MazeGate"
+					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
 					
 			"shrinesecret":
 				if Input.is_action_pressed("interact"):
 					secret_ending = true
 					get_tree().get_nodes_in_group("DoorDecoy")[0].visible = false	
 					get_tree().get_nodes_in_group("DoorDecoy")[0].get_children()[0].get_children()[0].disabled = true
-					get_tree().get_nodes_in_group("Player")[0].messageSummary = "SpecialShrine"
-					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "SpecialShrine"
+					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+					get_tree().get_nodes_in_group("Puppet")[0].shrine_interacted = true
 					
 			"shrinegatefake":
 				if Input.is_action_pressed("interact") && leaves_collected == 3:
 					get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 					leaves_collected -= 3
-					get_tree().get_nodes_in_group("Player")[0].messageSummary = "DecoyShrine"
-					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "DecoyShrine"
+					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
 				elif Input.is_action_pressed("interact"):
-					get_tree().get_nodes_in_group("Player")[0].messageSummary = "NoLeaves"
-					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "NoLeaves"
+					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
 					
 			"shrinegate1":
 				if Input.is_action_pressed("interact") && leaves_collected == 3:
@@ -214,11 +224,11 @@ func _process(delta):
 					leaves_collected -= 3
 					for x in get_tree().get_nodes_in_group("Rain"):
 						x.emitting = false
-					get_tree().get_nodes_in_group("Player")[0].messageSummary = "ShrineFinal"
-					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "ShrineFinal"
+					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
 				elif Input.is_action_pressed("interact"):
-					get_tree().get_nodes_in_group("Player")[0].messageSummary = "NoLeaves"
-					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "NoLeaves"
+					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
 					
 			"shrinegate2":
 				if Input.is_action_pressed("interact") && leaves_collected == 3:
@@ -227,30 +237,34 @@ func _process(delta):
 					leaves_collected -= 3
 					for x in get_tree().get_nodes_in_group("Rain"):
 						x.emitting = false
-					get_tree().get_nodes_in_group("Player")[0].messageSummary = "ShrineFinal"
-					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "ShrineFinal"
+					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
 				elif Input.is_action_pressed("interact"):
-					get_tree().get_nodes_in_group("Player")[0].messageSummary = "NoLeaves"
-					get_tree().get_nodes_in_group("Player")[0].messagePending = true
+					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "NoLeaves"
+					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
 					
 		if flashlight_switched == false:
-			match flashlight_mode:
-				"HighPower":
-					if Input.is_action_pressed("light_mode"):
-						flashlight_mode = "Off"
-						flashlight_switched = true
-				"Infrared":
-					if Input.is_action_pressed("light_mode"):
-						flashlight_mode = "HighPower"
-						flashlight_switched = true
-				"Scanner":
-					if Input.is_action_pressed("light_mode"):
-						flashlight_mode = "Infrared"
-						flashlight_switched = true
-				"Off":
-					if Input.is_action_pressed("light_mode"):
-						flashlight_mode = "Scanner"
-						flashlight_switched = true
+			if Input.is_action_pressed("light_mode"):
+				if flashlight_mode != "Off":
+					flashlight_mode = "Off"
+				elif flashlight_mode == "Off":
+					flashlight_mode = previous_mode
+				flashlight_switched = true
+				
+			if Input.is_action_pressed("scanner_mode"):
+				flashlight_mode = "Scanner"
+				previous_mode = "Scanner"
+				flashlight_switched = true
+				
+			if Input.is_action_pressed("infrared_mode"):
+				flashlight_mode = "Infrared"
+				previous_mode =  "Infrared"
+				flashlight_switched = true
+				
+			if Input.is_action_pressed("high_power_mode"):
+				flashlight_mode = "HighPower"
+				previous_mode = "HighPower"
+				flashlight_switched = true
 		else:
 			time_flashlight_switch +=delta;
 			if time_flashlight_switch >flashlight_switch_delay:
@@ -260,9 +274,11 @@ func _process(delta):
 		if enemy_targetted == true:
 			match flashlight_mode:
 				"HighPower":
-					targetted_enemy_body.get_parent().health -= high_dmg
+					targetted_enemy_body.health -= high_dmg
+					targetted_enemy_body.visible = true
 				"Infrared":
-					targetted_enemy_body.get_parent().health -= infrared_dmg
+					targetted_enemy_body.health -= infrared_dmg
+					targetted_enemy_body.visible = true
 				
 	
 # movement
@@ -272,7 +288,7 @@ func _physics_process(delta):
 	var movingx = false
 	var movingy = false
 	var targetVelocity = Vector2.ZERO
-	
+		
 	if direction.length() > 1:
 		directionVector = directionVector.normalized()
 		
@@ -303,7 +319,10 @@ func _physics_process(delta):
 
 	velocity = velocity.lerp(targetVelocity, lerp_strength)
 	
-	if velocity.length() > 0:
+	if Input.is_action_pressed("aim"):
+		look_at(get_global_mouse_position())
+		velocity = velocity * 0.85
+	elif velocity.length() > 0:
 		rotation = -velocity.angle_to(Vector2(1, 0))
 		
 		
@@ -311,20 +330,25 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	if body.get_parent().get_groups()[0] == "Ghost":
-		targetted_enemy_body = body
-		enemy_targetted = true
+	if body.get_groups().size() > 0:
+		if body.get_groups()[0] == "Ghost":
+			targetted_enemy_body = body
+			enemy_targetted = true
+			if flashlight_mode == "High" || flashlight_mode == "Infrared":
+				body.visible = true
+				
+	if body.get_parent().get_groups().size() > 0:
+		if body.get_parent().get_groups()[0] == "Leaf":
+			if flashlight_mode == "High" || flashlight_mode == "Scanner":
+				body.get_parent().visible = true
 
 
 func _on_area_2d_body_exited(body):
-	if body.get_parent().get_groups()[0] == "Ghost":
-		targetted_enemy_body = null
-		enemy_targetted = false
-
-
-func _on_area_2d_area_entered(area):
-	pass #leaves scan
-
-
-func _on_area_2d_area_exited(area):
-	pass #leaves scan
+	if body.get_groups().size() > 0:
+		if body.get_groups()[0] == "Ghost":
+			enemy_targetted = false
+			body.visible = false
+			
+	if body.get_parent().get_groups().size() > 0:
+		if body.get_parent().get_groups()[0] == "Leaf":
+			body.get_parent().visible = true

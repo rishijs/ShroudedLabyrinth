@@ -50,8 +50,12 @@ func _on_body_entered(body):
 		if get_tree().get_nodes_in_group("Player")[0]:
 			if get_tree().get_nodes_in_group("Player")[0].NPCInteraction == false:	
 				get_tree().get_nodes_in_group("InteractionInterface")[0].visible = true	
-				get_tree().get_nodes_in_group("Player")[0].in_light = true
+				if get_groups()[1] != "shrinesecret":
+					get_tree().get_nodes_in_group("Player")[0].in_light = true
 				shrine_status = true
+				
+		if get_tree().get_first_node_in_group("Ghost") == body:
+			body.visible = true
 
 
 func _on_body_exited(body):
@@ -61,3 +65,6 @@ func _on_body_exited(body):
 				get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
 				get_tree().get_nodes_in_group("Player")[0].in_light = false
 				shrine_status = false
+				
+		if get_tree().get_first_node_in_group("Ghost") == body:
+			body.visible = false

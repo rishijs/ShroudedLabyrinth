@@ -26,6 +26,8 @@ func _process(delta):
 				get_child(0).get_child(0).text = "You've gone and done it haven't you"
 			"MazeGate":
 				get_child(0).get_child(0).text = "Somewhere, a door opens"
+			"PuppetDefeated":
+				get_child(0).get_child(0).text = "Wow, you actually did it, congrats, I underestimated you"
 		if time > message_display_time:
 			time = 0
 			messagePending = false

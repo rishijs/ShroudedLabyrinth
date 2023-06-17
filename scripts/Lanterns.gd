@@ -1,6 +1,7 @@
 extends Node
 
 var lanterns = [];
+var active_light = [];
 var mode = 0; 
 var time = 0;
 
@@ -10,6 +11,7 @@ var time = 0;
 func _ready():
 	for x in self.get_children():
 		lanterns.append(x.get_child(0))
+		active_light.append(true)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,10 +55,29 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	if get_tree().get_nodes_in_group("Player").size() > 0:
 		if get_tree().get_first_node_in_group("Player") == body:
-			get_tree().get_nodes_in_group("Player")[0].in_light = true
-
+			var closest_lantern = 0
+			for x in range(lanterns.size()):
+				if lanterns[x].global_position.distance_to(get_tree().get_first_node_in_group("Player").position) < lanterns[closest_lantern].global_position.distance_to(get_tree().get_first_node_in_group("Player").position):
+					closest_lantern = x
+			if active_light[closest_lantern] == true:
+				get_tree().get_nodes_in_group("Player")[0].in_light = true
+		if get_tree().get_first_node_in_group("Puppet").get_child(0) == body:
+			var closest_lantern = 0
+			for x in range(lanterns.size()):
+				if lanterns[x].global_position.distance_to(get_tree().get_first_node_in_group("Puppet").position) < lanterns[closest_lantern].global_position.distance_to(get_tree().get_first_node_in_group("Puppet").position):
+					closest_lantern = x
+			lanterns[closest_lantern].energy = 0
+			active_light[closest_lantern] = false
+		
+		if get_tree().get_first_node_in_group("Ghost") == body:
+			body.visible = true
+			
+			
 
 func _on_area_2d_body_exited(body):
 	if get_tree().get_nodes_in_group("Player").size() > 0:
 		if get_tree().get_first_node_in_group("Player") == body:
 			get_tree().get_nodes_in_group("Player")[0].in_light = false
+		
+		if get_tree().get_first_node_in_group("Ghost") == body:
+			body.visible = false
