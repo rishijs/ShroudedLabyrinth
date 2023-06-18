@@ -61,8 +61,16 @@ var inside = false
 var secret_ending = false
 var special_ending = false
 
+var blessedimg = Image.load_from_file("res://custom/bird_shrine_activated.png")
+var blessedtexture = ImageTexture.create_from_image(blessedimg)
+var cursedimg = Image.load_from_file("res://custom/bird_shrine_cursed.png")
+var cursedtexture = ImageTexture.create_from_image(cursedimg)
+
+var cursed = false
+var blessed = false
+
 var deaths = 0
-var attempts = 1
+var attempts = 0
 var time_taken = 0
 
 # ready
@@ -99,17 +107,20 @@ func _process(delta):
 				infrared_light_consumption *= 0.5
 				scanner_light_consumption *= 0.5
 				stats_gained = true
+				get_tree().get_first_node_in_group("Item1Sprite").visible = false
 			2:
 				max_insanity += 100
 				max_health -= 75
 				insanity_overtime *= 0.75
 				stats_gained = true
+				get_tree().get_first_node_in_group("Item2Sprite").visible = false
 			3:
 				max_battery += 50
 				max_insanity += 50
 				max_health += 50
 				insanity_overtime *= 1.25
 				stats_gained = true
+				get_tree().get_first_node_in_group("Item3Sprite").visible = false
 			4:
 				high_dmg *= 1.5
 				infrared_dmg *= 1.5
@@ -120,6 +131,7 @@ func _process(delta):
 				infrared_light_consumption *= 1.25
 				scanner_light_consumption *= 1.25
 				stats_gained = true
+				get_tree().get_first_node_in_group("Item4Sprite").visible = false
 		
 		if insanity<0:
 			insanity = 0
@@ -172,76 +184,110 @@ func _process(delta):
 
 		
 		var curr_shrine = false
+		var shrine_area_ref = null
 		for x in shrines:
 			for child in x.get_children():
 				if child.get_groups().size() > 0:
 					if child.get_groups()[0] == "area2d":
 						if child.shrine_status == true:
+							shrine_area_ref = child
 							shrine_type = x.get_groups()[1]
 							curr_shrine = true
 						
 		if curr_shrine == false:
 			shrine_type = "default"
-			
-		match shrine_type:
-			"shrinemain1":
-				if Input.is_action_pressed("interact"):
-					get_tree().get_nodes_in_group("DoorMaze")[0].visible = false
-					get_tree().get_nodes_in_group("DoorMaze")[0].get_children()[0].get_children()[0].disabled = true
-					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "MazeGate"
-					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+		if shrine_type != "default":
+			if shrine_area_ref.interacted == false:
+				match shrine_type:
+					"shrinemain1":
+						if Input.is_action_pressed("interact"):
+							get_tree().get_nodes_in_group("DoorMaze")[0].visible = false
+							get_tree().get_nodes_in_group("DoorMaze")[0].get_children()[0].get_children()[0].disabled = true
+							get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "MazeGate"
+							get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+							shrine_area_ref.interacted = true					
+							get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
+							
+					"shrinemain2":
+						if Input.is_action_pressed("interact"):
+							get_tree().get_nodes_in_group("DoorMaze")[0].visible = false
+							get_tree().get_nodes_in_group("DoorMaze")[0].get_children()[0].get_children()[0].disabled = true
+							get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "MazeGate"
+							get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+							shrine_area_ref.interacted = true					
+							get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
+							
+					"shrinesecret":
+						if Input.is_action_pressed("interact"):			
+							secret_ending = true
+							get_tree().get_nodes_in_group("DoorDecoy")[0].visible = false	
+							get_tree().get_nodes_in_group("DoorDecoy")[0].get_children()[0].get_children()[0].disabled = true
+							get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "SpecialShrine"
+							get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+							get_tree().get_nodes_in_group("Puppet")[0].shrine_interacted = true
+							shrine_area_ref.interacted = true					
+							get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
+							
+					"shrinegatefake":
+						if Input.is_action_pressed("interact") && leaves_collected == 3:				
+							leaves_collected -= 3
+							get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "DecoyShrine"
+							get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+							cursed = true
+							shrine_area_ref.get_parent().set_texture(cursedtexture)
+							shrine_area_ref.interacted = true					
+							get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
+							
+						elif Input.is_action_pressed("interact"):			
+							get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "NoLeaves"
+							get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+							
+					"shrinegate1":
+						if Input.is_action_pressed("interact") && leaves_collected == 3:			
+							get_tree().get_nodes_in_group("DoorGate")[0].visible = false
+							get_tree().get_nodes_in_group("DoorGate")[0].get_children()[0].get_children()[0].disabled = true
+							leaves_collected -= 3
+							for x in get_tree().get_nodes_in_group("RainParticles"):
+								x.emitting = false
+							get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "ShrineFinal"
+							get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+							blessed = true
+							shrine_area_ref.get_parent().set_texture(blessedtexture)
+							shrine_area_ref.interacted = true					
+							get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
+							
+						elif Input.is_action_pressed("interact"):			
+							get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "NoLeaves"
+							get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+							
+					"shrinegate2":
+						if Input.is_action_pressed("interact") && leaves_collected == 3:
+							get_tree().get_nodes_in_group("DoorGate")[0].visible = false
+							get_tree().get_nodes_in_group("DoorGate")[0].get_children()[0].get_children()[0].disabled = true
+							leaves_collected -= 3
+							for x in get_tree().get_nodes_in_group("RainParticles"):
+								x.emitting = false
+							get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "ShrineFinal"
+							get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+							blessed = true
+							shrine_area_ref.get_parent().set_texture(blessedtexture)
+							shrine_area_ref.interacted = true					
+							get_tree().get_nodes_in_group("InteractionInterface")[0].visible = false
 					
-			"shrinemain2":
-				if Input.is_action_pressed("interact"):
-					get_tree().get_nodes_in_group("DoorMaze")[0].visible = false
-					get_tree().get_nodes_in_group("DoorMaze")[0].get_children()[0].get_children()[0].disabled = true
-					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "MazeGate"
-					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
-					
-			"shrinesecret":
-				if Input.is_action_pressed("interact"):
-					secret_ending = true
-					get_tree().get_nodes_in_group("DoorDecoy")[0].visible = false	
-					get_tree().get_nodes_in_group("DoorDecoy")[0].get_children()[0].get_children()[0].disabled = true
-					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "SpecialShrine"
-					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
-					get_tree().get_nodes_in_group("Puppet")[0].shrine_interacted = true
-					
-			"shrinegatefake":
-				if Input.is_action_pressed("interact") && leaves_collected == 3:
-					get_tree().change_scene_to_file("res://scenes/game_over.tscn")
-					leaves_collected -= 3
-					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "DecoyShrine"
-					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
-				elif Input.is_action_pressed("interact"):
-					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "NoLeaves"
-					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
-					
-			"shrinegate1":
-				if Input.is_action_pressed("interact") && leaves_collected == 3:
-					get_tree().get_nodes_in_group("DoorGate")[0].visible = false
-					get_tree().get_nodes_in_group("DoorGate")[0].get_children()[0].get_children()[0].disabled = true
-					leaves_collected -= 3
-					for x in get_tree().get_nodes_in_group("Rain"):
-						x.emitting = false
-					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "ShrineFinal"
-					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
-				elif Input.is_action_pressed("interact"):
-					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "NoLeaves"
-					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
-					
-			"shrinegate2":
-				if Input.is_action_pressed("interact") && leaves_collected == 3:
-					get_tree().get_nodes_in_group("DoorGate")[0].visible = false
-					get_tree().get_nodes_in_group("DoorGate")[0].get_children()[0].get_children()[0].disabled = true
-					leaves_collected -= 3
-					for x in get_tree().get_nodes_in_group("Rain"):
-						x.emitting = false
-					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "ShrineFinal"
-					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
-				elif Input.is_action_pressed("interact"):
-					get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "NoLeaves"
-					get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+						elif Input.is_action_pressed("interact"):			
+							get_tree().get_nodes_in_group("GameMessageText")[0].messageSummary = "NoLeaves"
+							get_tree().get_nodes_in_group("GameMessageText")[0].messagePending = true
+				
+		
+		if blessed == true:
+			insanity = 0
+			get_tree().get_nodes_in_group("Rain")[0].left_rain.emitting = false
+			get_tree().get_nodes_in_group("Rain")[0].right_rain.emitting = false
+			get_tree().get_nodes_in_group("DarkenScene")[0].visible = false
+		
+		if cursed == true:
+			insanity = max_insanity
+			health -= 0.2
 					
 		if flashlight_switched == false:
 			if Input.is_action_pressed("light_mode"):
@@ -319,6 +365,11 @@ func _physics_process(delta):
 
 	velocity = velocity.lerp(targetVelocity, lerp_strength)
 	
+	if velocity.x >= 0:
+		get_child(0).flip_v = false
+	elif velocity.x < 0:
+		get_child(0).flip_v = true
+		
 	if Input.is_action_pressed("aim"):
 		look_at(get_global_mouse_position())
 		velocity = velocity * 0.85
@@ -334,12 +385,12 @@ func _on_area_2d_body_entered(body):
 		if body.get_groups()[0] == "Ghost":
 			targetted_enemy_body = body
 			enemy_targetted = true
-			if flashlight_mode == "High" || flashlight_mode == "Infrared":
+			if flashlight_mode == "HighPower" || flashlight_mode == "Infrared":
 				body.visible = true
 				
 	if body.get_parent().get_groups().size() > 0:
 		if body.get_parent().get_groups()[0] == "Leaf":
-			if flashlight_mode == "High" || flashlight_mode == "Scanner":
+			if flashlight_mode == "HighPower" || flashlight_mode == "Scanner":
 				body.get_parent().visible = true
 
 
@@ -351,4 +402,4 @@ func _on_area_2d_body_exited(body):
 			
 	if body.get_parent().get_groups().size() > 0:
 		if body.get_parent().get_groups()[0] == "Leaf":
-			body.get_parent().visible = true
+			body.get_parent().visible = false

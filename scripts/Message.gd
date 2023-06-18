@@ -23,7 +23,7 @@ func _process(delta):
 			"DecoyShrine":
 				get_child(0).get_child(0).text = "Sometimes, the way forward isn't right in front of you"
 			"SpecialShrine":
-				get_child(0).get_child(0).text = "You've gone and done it haven't you"
+				get_child(0).get_child(0).text = "Not enough warnings sort"
 			"MazeGate":
 				get_child(0).get_child(0).text = "Somewhere, a door opens"
 			"PuppetDefeated":

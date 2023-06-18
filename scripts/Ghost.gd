@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-@export var insanity_increase = 0.4
+@export var insanity_increase = 1
 @export var insanity_increase_chase = 0.8
 @export var health_dmg_chase = 0.25
 @export var health = 50
 @export var max_health = 50
-@export var speed = 40
-@export var chase_speed = 80
-@export var healing = 0.7
+@export var speed = 60
+@export var chase_speed = 90
+@export var healing = 2
 
 var time = 0
 var activated = false
@@ -15,10 +15,10 @@ var flip_delay = 1
 var flip_timer = 0
 var flipped = false
 
-@export var teleport_timer = 97
-@export var sanguine = 97
+@export var teleport_timer = 7
+@export var sanguine = 7
 @export var teleport_cooldown = 100
-@export var teleport_amplitude = 50
+@export var teleport_amplitude = 150
 
 @export var patrolling = true
 

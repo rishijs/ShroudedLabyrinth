@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://byy8abxnm3pdd"]
 
 [ext_resource type="Script" path="res://scripts/DialogueList.gd" id="1_d3rtn"]
-[ext_resource type="Texture2D" uid="uid://bxla1l07wjogh" path="res://custom/ArrowOp1.png" id="2_32d16"]
-[ext_resource type="Texture2D" uid="uid://d03uxf3hcss7j" path="res://custom/ArrowOp2.png" id="3_2ep5x"]
+[ext_resource type="Texture2D" uid="uid://xegl71v8crbn" path="res://custom/Efficient_Batteries.png" id="2_jl2ay"]
 [ext_resource type="Script" path="res://scripts/ItemButtonSelect.gd" id="3_pyyua"]
-[ext_resource type="Texture2D" uid="uid://cf5k0a5jjksgd" path="res://custom/ArrowOp3.png" id="4_g1rav"]
-[ext_resource type="Texture2D" uid="uid://b5ux86drugvlw" path="res://custom/ArrowOp4.png" id="5_clk7h"]
+[ext_resource type="Texture2D" uid="uid://cy7tnk3kqyapq" path="res://custom/Mind_Shaping_Scroll.png" id="4_yu3yt"]
+[ext_resource type="Texture2D" uid="uid://ct6vn133n5cxl" path="res://custom/Triforce_Technique.png" id="5_nkxay"]
+[ext_resource type="Texture2D" uid="uid://wkbta6j3eldh" path="res://custom/Deadly_Beams.png" id="6_3vq6f"]
 
 [sub_resource type="SystemFont" id="SystemFont_de4cf"]
 subpixel_positioning = 0
@@ -84,6 +84,25 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="Label" type="Label" parent="NPCMessage" groups=["NPCMessageStatus"]]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -26.0
+offset_right = 73.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.670588, 0.615686, 1)
+theme_override_font_sizes/font_size = 10
+text = "I HAVE SPOKEN
+"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="Starter_Item_Select" type="ColorRect" parent="." groups=["ItemSelect"]]
 visible = false
 anchors_preset = 7
@@ -118,7 +137,7 @@ alignment = 1
 
 [node name="Item1" type="TextureRect" parent="Starter_Item_Select/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_32d16")
+texture = ExtResource("2_jl2ay")
 expand_mode = 2
 script = ExtResource("3_pyyua")
 
@@ -140,7 +159,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_oqk1r")
 
 [node name="Item2" type="TextureRect" parent="Starter_Item_Select/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("3_2ep5x")
+texture = ExtResource("4_yu3yt")
 expand_mode = 2
 script = ExtResource("3_pyyua")
 
@@ -162,7 +181,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_oqk1r")
 
 [node name="Item3" type="TextureRect" parent="Starter_Item_Select/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("4_g1rav")
+texture = ExtResource("5_nkxay")
 expand_mode = 2
 script = ExtResource("3_pyyua")
 
@@ -184,7 +203,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_oqk1r")
 
 [node name="Item4" type="TextureRect" parent="Starter_Item_Select/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("5_clk7h")
+texture = ExtResource("6_3vq6f")
 expand_mode = 2
 script = ExtResource("3_pyyua")
 

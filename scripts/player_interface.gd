@@ -12,13 +12,13 @@ var time2 = 0
 var time3 = 0
 var warning_cooldown = 10;
 
-var image1 = Image.load_from_file("res://custom/ArrowOp1.png")
+var image1 = Image.load_from_file("res://custom/Efficient_Batteries.png")
 var texture1 = ImageTexture.create_from_image(image1)
-var image2 = Image.load_from_file("res://custom/ArrowOp2.png")
+var image2 = Image.load_from_file("res://custom/Mind_Shaping_Scroll.png")
 var texture2 = ImageTexture.create_from_image(image2)
-var image3 = Image.load_from_file("res://custom/ArrowOp3.png")
+var image3 = Image.load_from_file("res://custom/Triforce_Technique.png")
 var texture3 = ImageTexture.create_from_image(image3)
-var image4 = Image.load_from_file("res://custom/ArrowOp4.png")
+var image4 = Image.load_from_file("res://custom/Deadly_Beams.png")
 var texture4 = ImageTexture.create_from_image(image4)
 
 # Called when the node enters the scene tree for the first time.

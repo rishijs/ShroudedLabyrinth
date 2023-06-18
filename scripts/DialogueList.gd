@@ -23,15 +23,19 @@ func _on_item_list_item_selected(index):
 	selected_item = true
 	get_tree().get_nodes_in_group("NPCMessage")[0].visible = true
 	visible = false
-	get_tree().get_nodes_in_group("NPCMessage")[0].get_child(0).text = get_tree().get_nodes_in_group("NPC")[0].extra_dialogue[index]
-	
+
 	if index == 0:
 		get_tree().get_nodes_in_group("NPC")[0].interacting = false
 		get_tree().get_nodes_in_group("NPC")[0].extra_messages = false
-		
-	if index == get_tree().get_nodes_in_group("NPC")[0].extra_dialogue.size()-2:
-		get_child(0).get_child(0).get_child(0).remove_item(index)
 	
-	if index == get_tree().get_nodes_in_group("NPC")[0].extra_dialogue.size()-1:
-		get_tree().get_nodes_in_group("NPC")[0].selecting_item = true
-		get_child(0).get_child(0).get_child(0).remove_item(index)
+	elif index <= get_tree().get_nodes_in_group("NPC")[0].extra_dialogue.size():
+		index = index -1
+		
+		get_tree().get_nodes_in_group("NPCMessage")[0].get_child(0).text = get_tree().get_nodes_in_group("NPC")[0].extra_dialogue[index]
+		
+		if index == get_tree().get_nodes_in_group("NPC")[0].extra_dialogue.size()-2:
+			get_child(0).get_child(0).get_child(0).remove_item(index)
+		
+		if index == get_tree().get_nodes_in_group("NPC")[0].extra_dialogue.size()-1:
+			get_tree().get_nodes_in_group("NPC")[0].selecting_item = true
+			get_child(0).get_child(0).get_child(0).remove_item(index)

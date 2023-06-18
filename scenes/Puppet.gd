@@ -3,6 +3,9 @@ extends CharacterBody2D
 @export var battery_drain_rate = 1
 @export var health = 9999
 @export var speed = 190
+@export var lantern_slow_timer = 3
+
+var lantern_slow = false
 
 var time = 0
 var activated = false
@@ -18,6 +21,10 @@ var doomsday_timer = 0
 var warning_close = false
 var warning_doomsday = false
 var player_in_range = false
+
+@export var jump_cooldown = 2
+@export var jump_distance = 150
+@export var jump_timer = 0
 
 var shrine_interacted = false
 var teleport = true
@@ -67,9 +74,21 @@ func _process(delta):
 
 func _physics_process(delta):
 	if shrine_interacted:
-		if waiting_timer > waiting_time:
+		if lantern_slow == true:
+			await get_tree().create_timer(lantern_slow_timer).timeout
+			lantern_slow = false
+		elif waiting_timer > waiting_time:
 			var direction = global_position.direction_to(get_tree().get_first_node_in_group("Player").global_position)
 			velocity = direction * speed
+			
+			jump_timer += delta
+			if jump_timer > jump_cooldown:
+				jump_timer = 0
+				visible = true
+				position += direction * jump_distance
+			elif jump_timer > jump_cooldown/2:
+				visible = false
+				
 			move_and_slide()
 
 func _on_battery_drain_body_entered(body):

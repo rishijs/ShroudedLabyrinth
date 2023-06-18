@@ -61,13 +61,15 @@ func _on_area_2d_body_entered(body):
 					closest_lantern = x
 			if active_light[closest_lantern] == true:
 				get_tree().get_nodes_in_group("Player")[0].in_light = true
-		if get_tree().get_first_node_in_group("Puppet").get_child(0) == body:
+		if get_tree().get_first_node_in_group("Puppet") == body:
 			var closest_lantern = 0
 			for x in range(lanterns.size()):
 				if lanterns[x].global_position.distance_to(get_tree().get_first_node_in_group("Puppet").position) < lanterns[closest_lantern].global_position.distance_to(get_tree().get_first_node_in_group("Puppet").position):
 					closest_lantern = x
 			lanterns[closest_lantern].energy = 0
 			active_light[closest_lantern] = false
+			get_tree().get_first_node_in_group("Puppet").lantern_slow = true
+			remove_child(lanterns[closest_lantern])
 		
 		if get_tree().get_first_node_in_group("Ghost") == body:
 			body.visible = true
