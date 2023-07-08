@@ -322,3 +322,42 @@ offset_bottom = -2.0
 grow_vertical = 0
 texture = ExtResource("12_ikby6")
 expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -138.0
+offset_top = 55.0
+offset_right = -8.0
+offset_bottom = 122.0
+grow_horizontal = 0
+color = Color(0.0784314, 0.0784314, 0.0784314, 0.411765)
+
+[node name="Timer" type="Label" parent="." groups=["TimerUI"]]
+self_modulate = Color(0.729412, 0.733333, 0.690196, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -95.0
+offset_top = 89.0
+offset_right = -15.0
+offset_bottom = 120.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+text = "00:00:00"
+
+[node name="DeathCount" type="Label" parent="." groups=["DeathUI"]]
+self_modulate = Color(1, 0, 0.0117647, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -142.0
+offset_top = 54.0
+offset_right = -1.0
+offset_bottom = 92.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "0 DEATHS"
+horizontal_alignment = 1
+vertical_alignment = 1

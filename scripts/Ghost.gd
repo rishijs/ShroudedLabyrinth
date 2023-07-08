@@ -104,6 +104,8 @@ func _on_navigation_agent_2d_target_reached():
 	if round_trip == false:
 		get_child(4).target_position = start
 		round_trip = true
+		if RandomNumberGenerator.new().randi_range(0,4) == 0:
+			get_child(6).playing = true
 	else:
 		get_child(4).target_position = end
 		round_trip = false

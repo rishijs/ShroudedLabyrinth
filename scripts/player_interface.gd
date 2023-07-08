@@ -12,6 +12,11 @@ var time2 = 0
 var time3 = 0
 var warning_cooldown = 10;
 
+var time_mins = 0
+var time_hours = 0
+var time_seconds = 0
+var time_base = 0
+
 var image1 = Image.load_from_file("res://custom/Efficient_Batteries.png")
 var texture1 = ImageTexture.create_from_image(image1)
 var image2 = Image.load_from_file("res://custom/Mind_Shaping_Scroll.png")
@@ -29,6 +34,33 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
+	time_base += delta
+	if time_base >= 1:
+		time_seconds += 1
+		time_base = 0
+	if time_seconds >= 60:
+		time_mins += 1
+		time_seconds = 0
+	if time_mins >= 60:
+		time_hours += 1
+		time_mins = 0
+	
+	if time_hours < 10 && time_mins < 10 && time_seconds < 10:
+		get_tree().get_first_node_in_group("TimerUI").text = "0"+str(time_hours) +":0"+ str(time_mins)+":0"+str(time_seconds)
+	elif time_hours < 10 && time_mins < 10:
+		get_tree().get_first_node_in_group("TimerUI").text = "0"+str(time_hours) +":0"+ str(time_mins)+":"+str(time_seconds)
+	elif time_hours < 10:
+		get_tree().get_first_node_in_group("TimerUI").text = "0"+str(time_hours) +":"+ str(time_mins)+":"+str(time_seconds)
+	elif time_mins < 10 && time_seconds < 10:
+		get_tree().get_first_node_in_group("TimerUI").text = str(time_hours) +":0"+ str(time_mins)+":0"+str(time_seconds)
+	elif time_seconds < 10:
+		get_tree().get_first_node_in_group("TimerUI").text = str(time_hours) +":"+ str(time_mins)+":0"+str(time_seconds)
+	elif time_mins < 10:
+		get_tree().get_first_node_in_group("TimerUI").text = str(time_hours) +":0"+ str(time_mins)+":"+str(time_seconds)
+		
+		
+	get_tree().get_first_node_in_group("DeathUI").text = str(get_tree().get_first_node_in_group("Player").deaths) +" DEATH(S)"
+		
 	if get_tree().get_first_node_in_group("Player").item_equipped == -1:
 		get_tree().get_first_node_in_group("ItemEquppedIcon").get_parent().visible = false
 	else:

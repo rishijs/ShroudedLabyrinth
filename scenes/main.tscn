@@ -1,4 +1,4 @@
-[gd_scene load_steps=141 format=3 uid="uid://bnkdk68rp3lku"]
+[gd_scene load_steps=144 format=3 uid="uid://bnkdk68rp3lku"]
 
 [ext_resource type="Texture2D" uid="uid://c5f1vk4awyuv7" path="res://custom/dark_square.png" id="1_h2bnh"]
 [ext_resource type="Texture2D" uid="uid://nb43k3pknwdx" path="res://custom/blood_floor_small.png" id="2_cve8r"]
@@ -63,13 +63,16 @@
 [ext_resource type="Texture2D" uid="uid://dnf647veyxdxx" path="res://light_textures/new_light_ray.png" id="43_7y2od"]
 [ext_resource type="Script" path="res://scripts/Ghost.gd" id="43_h44p4"]
 [ext_resource type="Texture2D" uid="uid://j75g2dxidhmv" path="res://custom/boss.png" id="45_o7q4x"]
-[ext_resource type="Script" path="res://scenes/Puppet.gd" id="46_d1e0a"]
 [ext_resource type="Texture2D" uid="uid://bfmt6pib85lca" path="res://custom/teleporter.png" id="47_0vuoa"]
 [ext_resource type="PackedScene" uid="uid://byy8abxnm3pdd" path="res://scenes/NPC_UI.tscn" id="47_ibo7w"]
 [ext_resource type="Script" path="res://scripts/NPC.gd" id="48_k1ccy"]
 [ext_resource type="Texture2D" uid="uid://b4ccvlk84mmn8" path="res://custom/charging_station.png" id="53_6s562"]
+[ext_resource type="AudioStream" uid="uid://pnebac751uin" path="res://custom/horrify.wav" id="57_yqcla"]
+[ext_resource type="Script" path="res://scripts/Puppet.gd" id="59_547oy"]
 [ext_resource type="Texture2D" uid="uid://djcxge83a07cu" path="res://custom/char_v3.png" id="62_0fxj8"]
 [ext_resource type="Texture2D" uid="uid://cse2d2ktcoq08" path="res://custom/NPC.png" id="69_x4td3"]
+[ext_resource type="AudioStream" uid="uid://572hkm76j326" path="res://scenes/ambience.wav" id="71_ctyha"]
+[ext_resource type="AudioStream" uid="uid://b0wp4albtwkcn" path="res://scenes/rain.wav" id="72_e8bnv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g73y2"]
 texture = ExtResource("1_h2bnh")
@@ -543,10 +546,10 @@ size = Vector2(165, 79)
 size = Vector2(240, 250)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vgnd"]
-size = Vector2(4910, 4410)
+size = Vector2(2935, 2715)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmb5e"]
-size = Vector2(1845, 1680)
+size = Vector2(1410, 1305)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bar5l"]
 size = Vector2(20, 22)
@@ -558,6 +561,10 @@ size = Vector2(210, 545)
 size = Vector2(945, 1010)
 
 [node name="main" type="Node2D"]
+
+[node name="Spawn" type="Marker2D" parent="." groups=["Spawn"]]
+position = Vector2(-187, -565)
+scale = Vector2(0.2, 0.2)
 
 [node name="Background" type="TileMap" parent="."]
 z_index = -2
@@ -633,7 +640,7 @@ texture = ExtResource("21_fddq3")
 [node name="DarkenScene" type="DirectionalLight2D" parent="." groups=["DarkenScene"]]
 position = Vector2(-8, -8)
 color = Color(0, 0, 0, 1)
-energy = 0.96
+energy = 0.94
 blend_mode = 2
 
 [node name="MazeRefs" type="Node" parent="."]
@@ -2186,6 +2193,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost2" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(779, -266)
 scale = Vector2(0.5, 0.5)
@@ -2214,6 +2225,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost2"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost3" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(828, 573)
@@ -2244,6 +2259,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost3"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost5" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(556, 46)
 scale = Vector2(0.5, 0.5)
@@ -2272,6 +2291,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost5"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost4" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(972, 559)
@@ -2302,6 +2325,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost4"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost6" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(240, 211)
 scale = Vector2(0.5, 0.5)
@@ -2330,6 +2357,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost6"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost7" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(112, 873)
@@ -2360,6 +2391,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost7"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost8" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(-242, 1282)
 scale = Vector2(0.5, 0.5)
@@ -2388,6 +2423,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost8"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost9" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(232, 1760)
@@ -2418,6 +2457,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost9"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost10" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(147, 1282)
 scale = Vector2(0.5, 0.5)
@@ -2446,6 +2489,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost10"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost11" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(-220, 2360)
@@ -2476,6 +2523,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost11"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost14" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(-128, 1968)
 scale = Vector2(0.5, 0.5)
@@ -2504,6 +2555,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost14"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost15" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(-453, 2649)
@@ -2534,6 +2589,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost15"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost16" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(-1136, 2824)
 scale = Vector2(0.5, 0.5)
@@ -2562,6 +2621,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost16"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost17" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(-1987, 2240)
@@ -2592,6 +2655,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost17"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost18" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(-1592, 1801)
 scale = Vector2(0.5, 0.5)
@@ -2620,6 +2687,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost18"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost19" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(262, 2776)
@@ -2650,6 +2721,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost19"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost20" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(1517, 2264)
 scale = Vector2(0.5, 0.5)
@@ -2678,6 +2753,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost20"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost21" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(960, 2080)
@@ -2708,6 +2787,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost21"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost22" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(816, 1496)
 scale = Vector2(0.5, 0.5)
@@ -2736,6 +2819,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost22"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost23" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(1776, 1433)
@@ -2766,6 +2853,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost23"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost24" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(2219, 1323)
 scale = Vector2(0.5, 0.5)
@@ -2794,6 +2885,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost24"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost25" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(3229, 1341)
@@ -2824,6 +2919,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost25"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost26" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(2241, 1906)
 scale = Vector2(0.5, 0.5)
@@ -2852,6 +2951,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost26"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost27" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(3251, 1924)
@@ -2882,6 +2985,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost27"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost28" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(177, 3664)
 scale = Vector2(0.5, 0.5)
@@ -2910,6 +3017,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost28"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost29" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(312, 3072)
@@ -2940,6 +3051,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost29"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost30" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(-312, 3664)
 scale = Vector2(0.5, 0.5)
@@ -2968,6 +3083,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost30"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Ghost12" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(1298, 2008)
@@ -2998,6 +3117,10 @@ energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost12"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
+
 [node name="Ghost13" type="CharacterBody2D" parent="Ghosts" groups=["Ghost"]]
 position = Vector2(1489, 1576)
 scale = Vector2(0.5, 0.5)
@@ -3026,6 +3149,10 @@ color = Color(0.0431373, 1, 0.67451, 1)
 energy = 0.3
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ghosts/Ghost13"]
+stream = ExtResource("57_yqcla")
+volume_db = -55.0
 
 [node name="Teleporters" type="Node" parent="."]
 
@@ -3105,7 +3232,7 @@ shape = SubResource("RectangleShape2D_w6hbb")
 [node name="Puppet" type="CharacterBody2D" parent="." groups=["Puppet"]]
 position = Vector2(2315, -120)
 scale = Vector2(0.2, 0.2)
-script = ExtResource("46_d1e0a")
+script = ExtResource("59_547oy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Puppet"]
 position = Vector2(5.00098, 30)
@@ -3117,18 +3244,21 @@ texture = ExtResource("45_o7q4x")
 [node name="BatteryDrain" type="Area2D" parent="Puppet"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Puppet/BatteryDrain"]
-position = Vector2(-19.9998, -15.001)
+position = Vector2(12.5, 12.4999)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_4vgnd")
 
 [node name="OneShot" type="Area2D" parent="Puppet"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Puppet/OneShot"]
-position = Vector2(17.5002, 4.99963)
+position = Vector2(30, 22.4999)
 shape = SubResource("RectangleShape2D_nmb5e")
 
-[node name="Marker2D" type="Marker2D" parent="Puppet"]
+[node name="Active" type="Marker2D" parent="Puppet"]
 position = Vector2(-8685, -1490)
+
+[node name="Rest" type="Marker2D" parent="Puppet" groups=["RestPuppet"]]
+position = Vector2(25, 35)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Puppet" groups=["puppetnav"]]
 
@@ -3150,7 +3280,7 @@ zoom = Vector2(2, 2)
 
 [node name="Flashlight" type="PointLight2D" parent="Player" groups=["Flashlight"]]
 show_behind_parent = true
-position = Vector2(102, -6)
+position = Vector2(100, -6)
 rotation = -3.14159
 scale = Vector2(0.501281, 0.536749)
 energy = 0.69
@@ -3166,7 +3296,7 @@ polygon = PackedVector2Array(173.555, -26.0835, -145.627, -100.605, -145.627, 78
 [node name="PointLight2D2" type="PointLight2D" parent="Player"]
 show_behind_parent = true
 scale = Vector2(0.2, 0.2)
-energy = 0.1
+energy = 0.15
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.5
 
@@ -3193,14 +3323,12 @@ script = ExtResource("48_k1ccy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/StaticBody2D"]
 position = Vector2(10.0002, -2.49927)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_gw6lb")
 
 [node name="Area2D" type="Area2D" parent="NPC"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Area2D"]
 position = Vector2(57.5002, 50.0007)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_aapqn")
 
 [node name="Entrance" type="PointLight2D" parent="."]
@@ -3214,6 +3342,18 @@ position = Vector2(128, 6614)
 color = Color(1, 0.34902, 0.117647, 1)
 texture = ExtResource("12_wu3iw")
 texture_scale = 0.5
+
+[node name="Wind" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-145, -525)
+stream = ExtResource("71_ctyha")
+volume_db = -17.801
+autoplay = true
+
+[node name="Rain2" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-145, -525)
+stream = ExtResource("72_e8bnv")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="body_entered" from="Lanterns/Lantern/Area2D" to="Lanterns" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Lanterns/Lantern/Area2D" to="Lanterns" method="_on_area_2d_body_exited"]

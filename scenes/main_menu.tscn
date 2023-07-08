@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpxb7vl1ihm0v"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_yl3ui"]
+[ext_resource type="Texture2D" uid="uid://bk1gka3jp7upt" path="res://custom/TitleScreenEdited.png" id="2_er7ee"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_yl3ui")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = ExtResource("2_er7ee")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -260.0
+offset_right = -8.0
+offset_bottom = -126.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "SHROUDED
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Title2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -260.0
+offset_right = 449.0
+offset_bottom = -126.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "LABYRINTH
+"
+vertical_alignment = 1
+
+[node name="Start" type="Button" parent="."]
+self_modulate = Color(0.666667, 0, 1, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -124.0
+offset_right = 128.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "START"
+
+[node name="Controls" type="Button" parent="."]
+self_modulate = Color(0.666667, 0, 1, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -52.0
+offset_right = 128.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "CONTROLS"
+
+[node name="Credits" type="Button" parent="."]
+self_modulate = Color(0.666667, 0, 1, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 20.0
+offset_right = 128.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "CREDITS"
+
+[node name="Shade" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -228.0
+offset_right = 336.0
+offset_bottom = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.129412)
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]

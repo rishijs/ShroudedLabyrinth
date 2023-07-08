@@ -52,18 +52,16 @@ var starter_item_descriptions = ["++ Flashlight Efficiency\n -- Max battery.",
 "++ Flashlight Strength\n - Flashlight Efficiency"]
 
 var deaths_help = ["Did you turn on your flashlight? There are different modes you can use. Also, pay special attention to
-my announcements I will occasionally broadcast to you.",
-"I think you are missing braincells. Sorry, too harsh, did you know you could aim your flashlight? You got some more figuring out to do.", "You are hopeless ..."]
-var deaths_help_headers = ["Am I missing anything?","Hi again, is there anything else I'm missing?", "I need more help!"]
-
-var attempts_help = ["Ah yes, those noises are from ghosts lurking in the labyrinth. If you use more powerful
-flashlight modes, you will see them.", "There's a top secret passageway around here, look closely. I do recommend
-you stay away from it though, a deadly ill omened creature is ahead.", "Told you so bucko, you do not belong here."]
-var attempts_help_headers = ["What are those noises?", "I haven't seen any hidden pathways?", "Oops"]
+my announcements I will occasionally broadcast to you.","Ah yes, those noises are from ghosts lurking in the labyrinth. If you use more powerful
+flashlight modes, you will see them.",
+"Try aim flashlight. You can manually aim it. Can recommend.", "There's a top secret passageway around here, look closely. I do recommend
+you stay away from it though, a deadly ill omened creature is ahead.", "You are hopeless ...","Told you so bucko, you do not belong here."]
+var deaths_help_headers = ["Am I missing anything?","What are those noises?",
+"Hi again, is there anything else I'm missing?","I haven't seen any hidden pathways?",
+ "I need more help!", "Oops"]
 
 var items_dialogue_left = 1
-var death_dialogue_left = 3
-var attempts_dialogue_left = 3
+var death_dialogue_left = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -100,32 +98,30 @@ func _process(delta):
 		items_dialogue_left = 0
 	
 	match death_dialogue_left:
-		3:
+		6:
+			if get_tree().get_nodes_in_group("Player")[0].deaths >= 2 && talkedTo >= 3:
+				get_tree().get_nodes_in_group("DialogueList")[0].add_item(deaths_help_headers[death_dialogue_left-1],texture1,true)
+				death_dialogue_left -= 1
+		5:
 			if get_tree().get_nodes_in_group("Player")[0].deaths >= 3 && talkedTo >= 3:
+				get_tree().get_nodes_in_group("DialogueList")[0].add_item(deaths_help_headers[death_dialogue_left-1],texture2,true)
+				death_dialogue_left -= 1
+		4:
+			if get_tree().get_nodes_in_group("Player")[0].deaths >= 4 && talkedTo >= 3:
+				get_tree().get_nodes_in_group("DialogueList")[0].add_item(deaths_help_headers[death_dialogue_left-1],texture3,true)
+				death_dialogue_left -= 1
+		3:
+			if get_tree().get_nodes_in_group("Player")[0].attempts >= 5 && talkedTo >= 3:
 				get_tree().get_nodes_in_group("DialogueList")[0].add_item(deaths_help_headers[death_dialogue_left-1],texture1,true)
 				death_dialogue_left -= 1
 		2:
-			if get_tree().get_nodes_in_group("Player")[0].deaths >= 10 && talkedTo >= 3:
-				get_tree().get_nodes_in_group("DialogueList")[0].add_item(deaths_help_headers[death_dialogue_left-1],texture2,true)
+			if get_tree().get_nodes_in_group("Player")[0].attempts >= 10 && talkedTo >= 3:
+				get_tree().get_nodes_in_group("DialogueList")[0].add_item(deaths_help_headers[death_dialogue_left-1],texture1,true)
 				death_dialogue_left -= 1
 		1:
-			if get_tree().get_nodes_in_group("Player")[0].deaths >= 25 && talkedTo >= 3:
-				get_tree().get_nodes_in_group("DialogueList")[0].add_item(deaths_help_headers[death_dialogue_left-1],texture3,true)
-				death_dialogue_left -= 1
-				
-	match attempts_dialogue_left:
-		3:
-			if get_tree().get_nodes_in_group("Player")[0].attempts >= 5 && talkedTo >= 3:
-				get_tree().get_nodes_in_group("DialogueList")[0].add_item(attempts_help_headers[attempts_dialogue_left-1],texture1,true)
-				attempts_dialogue_left -= 1
-		2:
 			if get_tree().get_nodes_in_group("Player")[0].attempts >= 15 && talkedTo >= 3:
-				get_tree().get_nodes_in_group("DialogueList")[0].add_item(attempts_help_headers[attempts_dialogue_left-1],texture1,true)
-				attempts_dialogue_left -= 1
-		1:
-			if get_tree().get_nodes_in_group("Player")[0].attempts >= 50 && talkedTo >= 3:
-				get_tree().get_nodes_in_group("DialogueList")[0].add_item(attempts_help_headers[attempts_dialogue_left-1],texture1,true)
-				attempts_dialogue_left -= 1
+				get_tree().get_nodes_in_group("DialogueList")[0].add_item(deaths_help_headers[death_dialogue_left-1],texture1,true)
+				death_dialogue_left -= 1
 
 				
 	if get_tree().get_nodes_in_group("Player")[0].NPCInteraction == true:
@@ -156,12 +152,12 @@ func _process(delta):
 				get_tree().get_nodes_in_group("NPCMessage")[0].get_child(0).text = initial_dialogue[initial_dialogue.size()-1]
 				talkedTo += 1
 				
-			elif talkedTo >= 3 && get_tree().get_nodes_in_group("Player")[0].attempts >= 2:
+			elif talkedTo >= 3 && get_tree().get_nodes_in_group("Player")[0].deaths >= 1:
 				get_tree().get_nodes_in_group("NPCPrompts")[0].visible = true
 				extra_messages = true
 				talkedTo += 1
 				
-			elif talkedTo >= 3 && get_tree().get_nodes_in_group("Player")[0].attempts < 2:
+			elif talkedTo >= 3 && get_tree().get_nodes_in_group("Player")[0].deaths < 1:
 				get_tree().get_nodes_in_group("NPCMessage")[0].visible = true
 				get_tree().get_nodes_in_group("NPCMessage")[0].get_child(0).text = initial_dialogue[initial_dialogue.size()-1]
 				talkedTo += 1
@@ -206,7 +202,6 @@ func _process(delta):
 			get_tree().get_nodes_in_group("NPCPrompts")[0].visible = false
 	
 	if interacting == false:
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		get_tree().get_nodes_in_group("NPCInterface")[0].visible = false
 		get_tree().get_nodes_in_group("NPCMessage")[0].visible = false
 		get_tree().get_nodes_in_group("NPCPrompts")[0].visible = false

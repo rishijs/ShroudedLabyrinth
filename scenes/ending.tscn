@@ -1,0 +1,108 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy4pob12iw1pg"]
+
+[ext_resource type="Script" path="res://scripts/ending.gd" id="1_cuc3u"]
+
+[node name="Ending" type="CanvasLayer"]
+script = ExtResource("1_cuc3u")
+
+[node name="Thanks" type="Label" parent="." groups=["Thanks"]]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -140.0
+offset_right = 402.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.745098, 0.705882, 1)
+theme_override_font_sizes/font_size = 30
+text = "THANKS FOR COMPLETING THE SHROUDED LABYRINTH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Thanks"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -401.0
+offset_top = -22.5
+offset_right = -362.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(20.52, 1)
+color = Color(0, 0, 0, 0.243137)
+
+[node name="Teaser" type="Label" parent="." groups=["Teaser"]]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 76.0
+offset_right = 200.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "I always thought that you were going to be the one. I have a few connections in neighboring labyrinths, I'll let you know when I have a lead."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="Teaser"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -39.0
+offset_right = -156.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(9.76, 2.08)
+color = Color(0, 0, 0, 0.223529)
+
+[node name="MainMenu" type="Button" parent="." groups=["ReturnToMainMenu"]]
+self_modulate = Color(0.721569, 0, 1, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -136.0
+offset_right = 100.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "MAIN MENU"
+
+[node name="Restart" type="Button" parent="." groups=["EndingScreenRestart"]]
+self_modulate = Color(0.941176, 0.968627, 0.913725, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -72.0
+offset_right = 52.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "RESTART"
+
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

@@ -33,7 +33,7 @@ extends CharacterBody2D
 @export var infrared_dmg = 0.7
 
 @export var start_time = 5
-@export var dev_mode = true
+@export var dev_mode = false
 @export var rotation_speed = 10
 
 var item_equipped = -1
@@ -68,9 +68,11 @@ var cursedtexture = ImageTexture.create_from_image(cursedimg)
 
 var cursed = false
 var blessed = false
+var reset = false
+var wait_restart = 5
+var wait_restart_timer = 0
 
 var deaths = 0
-var attempts = 0
 var time_taken = 0
 
 # ready
@@ -91,6 +93,16 @@ func _ready():
 # tick
 func _process(delta):
 	
+	if reset == true:
+		wait_restart_timer += delta
+		if wait_restart_timer >= wait_restart:
+			reset = false
+			wait_restart_timer =0
+		
+	if Input.is_action_pressed("restart"):
+		position = get_tree().get_first_node_in_group("Spawn").global_position
+		get_tree().change_scene_to_file("res://scenes/main.tscn")
+		
 	if get_tree().get_current_scene().get_name() == "main":
 		time += delta
 		
@@ -138,10 +150,17 @@ func _process(delta):
 		if insanity > max_insanity:
 			insanity = max_insanity
 		if health<=0:
-			if secret_ending == true:
-				get_tree().change_scene_to_file("res://scenes/special_ending.tscn")
+			if cursed == true || get_tree().get_first_node_in_group("Puppet").shrine_interacted == true:
+				get_tree().change_scene_to_file("res://scenes/darkness_ending.tscn")
 			else:
-				get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+				position = get_tree().get_first_node_in_group("Spawn").global_position
+				if reset == false:
+					deaths += 1
+					health = max_health
+					insanity = 0
+					battery = max_battery
+					reset = true
+				
 		if battery<0:
 			battery = 0
 		if battery_recharging == true:
