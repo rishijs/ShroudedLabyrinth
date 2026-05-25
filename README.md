@@ -1,5 +1,4 @@
 # Shrouded Labyrinth
+https://sevadusk.itch.io/shrouded-labyrinth
 
-Game -> https://sevadusk.itch.io/shrouded-labyrinth
-
-Didn't expect empty description
+First Godot Game
